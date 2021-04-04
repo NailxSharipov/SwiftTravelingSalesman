@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540263CC261A303F00B32B93 /* EdgeSet+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540263CB261A303F00B32B93 /* EdgeSet+Availability.swift */; };
 		5425CA94260E5CB40044CC20 /* BruteForceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5425CA93260E5CB40044CC20 /* BruteForceSolution.swift */; };
 		545CB61426137EF700EBB425 /* SetBrutForceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CB61326137EF700EBB425 /* SetBrutForceSolution.swift */; };
 		545CB62226138BE400EBB425 /* StaticList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CB62126138BE400EBB425 /* StaticList.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		540263CB261A303F00B32B93 /* EdgeSet+Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EdgeSet+Availability.swift"; sourceTree = "<group>"; };
 		5425CA93260E5CB40044CC20 /* BruteForceSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceSolution.swift; sourceTree = "<group>"; };
 		545CB61326137EF700EBB425 /* SetBrutForceSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBrutForceSolution.swift; sourceTree = "<group>"; };
 		545CB62126138BE400EBB425 /* StaticList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticList.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				54848E26261244DA0003E193 /* EdgeSet.swift */,
 				545CB62126138BE400EBB425 /* StaticList.swift */,
 				54A669A2261613F6002238B1 /* UnoptimalEdgeMatrix.swift */,
+				540263CB261A303F00B32B93 /* EdgeSet+Availability.swift */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540263CC261A303F00B32B93 /* EdgeSet+Availability.swift in Sources */,
 				54E7BF062603FCA10047D18D /* PowerIndex.swift in Sources */,
 				54B87577260724E10009E939 /* OpenLinkedList.swift in Sources */,
 				549A025E25F3F07B004EAD53 /* StageData.swift in Sources */,

@@ -7,7 +7,7 @@
 
 struct StaticList {
     
-    private struct Node {
+    struct Node {
         static let empty = Node(prev: -1, value: false, next: -1)
         fileprivate (set) var prev: Int
         fileprivate (set) var value: Bool
@@ -23,7 +23,7 @@ struct StaticList {
     private (set) var count: Int
     private (set) var first: Int
     private (set) var last: Int
-    private var nodes: [Node]
+    private (set) var nodes: [Node]
     
     @inline(__always)
     var values: [Int] {

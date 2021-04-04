@@ -52,11 +52,11 @@ final class StageData: ObservableObject, Stage {
     
     init(data: [[CGPoint]]) {
         self.data = data
-        self.pageIndex = 0
-//        self.pageIndex = UserDefaults.standard.integer(forKey: key)
+//        self.pageIndex = 0
+        self.pageIndex = UserDefaults.standard.integer(forKey: key)
         
         self.points = self.data[self.pageIndex]
-        print(self.pageIndex)
+        debugPrint(self.pageIndex)
     }
     
     func onNext() {
@@ -64,7 +64,7 @@ final class StageData: ObservableObject, Stage {
         self.pageIndex = (self.pageIndex + 1) % n
         UserDefaults.standard.set(self.pageIndex, forKey: key)
         self.points = self.data[self.pageIndex]
-        print(self.pageIndex)
+        debugPrint(self.pageIndex)
     }
     
     func onPrev() {
@@ -72,7 +72,7 @@ final class StageData: ObservableObject, Stage {
         self.pageIndex = (self.pageIndex - 1 + n) % n
         UserDefaults.standard.set(pageIndex, forKey: self.key)
         self.points = self.data[self.pageIndex]
-        print(self.pageIndex)
+        debugPrint(self.pageIndex)
     }
     
     func onStart(start: CGPoint, radius: CGFloat) -> Bool {

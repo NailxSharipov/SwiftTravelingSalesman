@@ -189,6 +189,40 @@ struct DataStorage {
             CGPoint(x:  -15, y:   5)
         ],
         [
+            CGPoint(x: -15, y:  15),
+            CGPoint(x:   0, y:  15),
+            CGPoint(x:  15, y:  15),
+            
+            CGPoint(x:   5, y:   5),
+            CGPoint(x:   5, y:  -5),
+            
+            CGPoint(x:  15, y: -15),
+            CGPoint(x:   5, y: -15),
+            CGPoint(x:  -5, y: -15),
+            CGPoint(x: -15, y: -15),
+            
+            CGPoint(x: -15, y:   5),
+            CGPoint(x: -15, y:   0),
+            CGPoint(x: -15, y:  -5)
+        ],
+        [
+            CGPoint(x: -15, y:  15),
+            CGPoint(x:   5, y:  -5),
+            CGPoint(x:  15, y:  15),
+            CGPoint(x:   5, y:   5),
+            CGPoint(x:   0, y:  15),
+            
+
+            CGPoint(x:  15, y: -15),
+            CGPoint(x:   5, y: -15),
+            CGPoint(x:  -5, y: -15),
+            CGPoint(x: -15, y: -15),
+            
+            CGPoint(x: -15, y:   5),
+            CGPoint(x: -15, y:   0),
+            CGPoint(x: -15, y:  -5)
+        ],
+        [
             CGPoint(x: -20, y:  20),
             CGPoint(x: -10, y:  20),
             CGPoint(x:   0, y:  20),

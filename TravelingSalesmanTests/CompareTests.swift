@@ -31,8 +31,8 @@ final class CompareTests: XCTestCase {
 //            let len1 = matrix.closedLength(path: solution1)
 //
 //            if len0 != len1 {
-//                print("len0: \(len0), len1: \(len1)")
-//                print("-----")
+//                debugPrint("len0: \(len0), len1: \(len1)")
+//                debugPrint("-----")
 //                points.printDebug()
 //            }
 //            XCTAssertEqual(len0, len1)
@@ -59,6 +59,6 @@ private extension Array where Element == CGPoint {
             }
         }
         str.append("]")
-        print(str)
+        debugPrint(str)
     }
 }

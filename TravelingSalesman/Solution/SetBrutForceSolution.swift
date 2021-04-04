@@ -15,6 +15,7 @@ struct SetBrutForceSolution {
     
     private var length = 0
     private var m0 = 0
+    private var m1 = 0
 
     static func minPath(matrix: AdMatrix) -> [Int] {
         var solution = SetBrutForceSolution(matrix: matrix)
@@ -48,7 +49,7 @@ struct SetBrutForceSolution {
             length -= matrix[a, b]
         }
         
-//        debugPrint("m0: \(m0)")
+//        debugPrint("m0: \(m0) m1: \(m1)")
     }
     
     mutating private func next(edgeSet: EdgeSet) {
@@ -68,20 +69,15 @@ struct SetBrutForceSolution {
 //        debugPrint("before:")
 //        debugPrint(nextEdgeSet)
         
+
+        let p0 = path[index - 1]
         let p1 = path[index]
+        let set = edgeMatrix[p0, p1]
+//        debugPrint("subtract: (\(p0)-\(p1))")
+//        debugPrint(set)
 
-//        for j in 0..<index {
-            let j = index - 1
-            let p0 = path[j]
-            let set = edgeMatrix[p0, p1]
-//            debugPrint("subtract: (\(p0)-\(p1))")
-//            debugPrint(set)
-
-            nextEdgeSet.subtract(set: set)
-        // new
+        nextEdgeSet.subtract(set: set)
         nextEdgeSet.remove(a: p1, ends: self.path)
-//        }
-        nextEdgeSet.subtract(set: edgeMatrix[path[index - 1], path[index]])
         
 //        debugPrint("after:")
 //        debugPrint(nextEdgeSet)
@@ -92,11 +88,16 @@ struct SetBrutForceSolution {
         
 //        debugPrint("edgesCount: \(edgesCount), stepsToEnd: \(stepsToEnd)")
         
-        
         guard edgesCount >= stepsToEnd else {
             m0 += 1
             return
         }
+        
+        guard nextEdgeSet.isAllConnective else {
+            m1 += 1
+            return
+        }
+        
         
         let b = path[index]
         let list = nextEdgeSet[b]

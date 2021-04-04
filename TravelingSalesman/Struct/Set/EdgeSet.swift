@@ -9,7 +9,7 @@ struct EdgeSet {
 
     let size: Int
     private (set) var count: Int
-    private var array: [StaticList]
+    private (set) var array: [StaticList]
 
     var edgesCount: Int {
         var result = 0
