@@ -70,14 +70,14 @@ struct SetBrutForceSolution {
 //        debugPrint(nextEdgeSet)
         
 
-        let p0 = path[index - 1]
-        let p1 = path[index]
-        let set = edgeMatrix[p0, p1]
-//        debugPrint("subtract: (\(p0)-\(p1))")
+        let a = path[index - 1]
+        let b = path[index]
+        let set = edgeMatrix[a, b]
+//        debugPrint("subtract: (\(a)-\(b))")
 //        debugPrint(set)
 
         nextEdgeSet.subtract(set: set)
-        nextEdgeSet.remove(a: p1, ends: self.path)
+        nextEdgeSet.remove(a: b, ends: self.path)
         
 //        debugPrint("after:")
 //        debugPrint(nextEdgeSet)
@@ -93,13 +93,13 @@ struct SetBrutForceSolution {
             return
         }
         
-        guard nextEdgeSet.isAllConnective else {
+        guard nextEdgeSet.validateConnectivity(index: b) else {
             m1 += 1
             return
         }
         
         
-        let b = path[index]
+        
         let list = nextEdgeSet[b]
         if list.count > 0 {
             let values = list.values

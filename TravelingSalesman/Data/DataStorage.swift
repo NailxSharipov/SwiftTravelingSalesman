@@ -248,8 +248,14 @@ struct DataStorage {
         Self.circle(n: 16, radius: 20),
         Self.circle(n: 20, radius: 20),
         Self.circle(n: 24, radius: 20),
-        Self.circle(n: 32, radius: 20),
-        Self.circle(n: 50, radius: 20)
+//        Self.circle(n: 32, radius: 20),
+//        Self.circle(n: 50, radius: 20),
+        Self.spiral(n: 8, m: 1, r0: 0, r1: 20),
+        Self.spiral(n: 10, m: 1, r0: 0, r1: 20),
+        Self.spiral(n: 12, m: 1.5, r0: 0, r1: 20),
+        Self.spiral(n: 14, m: 1.5, r0: 0, r1: 20),
+        Self.spiral(n: 16, m: 2, r0: 0, r1: 20),
+        Self.spiral(n: 20, m: 2.5, r0: 0, r1: 20),
     ]
     
     
@@ -268,6 +274,30 @@ struct DataStorage {
 
         return points
     }
+    
+    private static func spiral(n: Int, m: CGFloat, r0: CGFloat, r1: CGFloat) -> [CGPoint] {
+        var points = [CGPoint](repeating: .zero, count: n)
+
+        let dA = 2 * CGFloat.pi * m / CGFloat(n)
+        var a: CGFloat = 0
+
+        let minR = min(r0, r1)
+        let maxR = max(r0, r1)
+        let dR = (maxR - minR) / CGFloat(n)
+        var r = minR
+        for i in 0..<n {
+            
+            let x: CGFloat = r * cos(a)
+            let y: CGFloat = r * sin(a)
+            points[i] = CGPoint(x: x, y: y)
+            a += dA
+            r += dR
+        }
+
+        return points
+    }
+    
+    
 }
 
 

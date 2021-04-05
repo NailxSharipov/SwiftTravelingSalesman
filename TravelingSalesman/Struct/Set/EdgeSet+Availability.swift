@@ -7,12 +7,9 @@
 
 extension EdgeSet {
 
-    var isAllConnective: Bool {
+    func validateConnectivity(index: Int) -> Bool {
         var visited = [Bool](repeating: false, count: size)
-        guard let index = array.firstIndex(where: { $0.count > 0 }) else {
-            return true
-        }
-        var visitedCount = 1
+        var visitedCount = 0
         visited[index] = true
         var buffer = [array[index]]
         var nextBuffer = [StaticList]()
