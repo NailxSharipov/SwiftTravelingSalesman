@@ -28,7 +28,6 @@
 		549A025E25F3F07B004EAD53 /* StageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A025D25F3F07B004EAD53 /* StageData.swift */; };
 		549A026225F3F0C4004EAD53 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A026125F3F0C4004EAD53 /* Stage.swift */; };
 		549A026625F3F514004EAD53 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A026525F3F514004EAD53 /* DataStorage.swift */; };
-		549A027025F51C4D004EAD53 /* AdjacencyMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A026F25F51C4D004EAD53 /* AdjacencyMatrix.swift */; };
 		549A028A25F5408A004EAD53 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A028925F5408A004EAD53 /* DotView.swift */; };
 		54A669A3261613F6002238B1 /* UnoptimalEdgeMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A669A2261613F6002238B1 /* UnoptimalEdgeMatrix.swift */; };
 		54B87577260724E10009E939 /* OpenLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B87576260724E10009E939 /* OpenLinkedList.swift */; };
@@ -75,7 +74,6 @@
 		549A025D25F3F07B004EAD53 /* StageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageData.swift; sourceTree = "<group>"; };
 		549A026125F3F0C4004EAD53 /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		549A026525F3F514004EAD53 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
-		549A026F25F51C4D004EAD53 /* AdjacencyMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacencyMatrix.swift; sourceTree = "<group>"; };
 		549A028925F5408A004EAD53 /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		54A669A2261613F6002238B1 /* UnoptimalEdgeMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoptimalEdgeMatrix.swift; sourceTree = "<group>"; };
 		54B87576260724E10009E939 /* OpenLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLinkedList.swift; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 		546A933525F8D5B400DDF3E0 /* Solution */ = {
 			isa = PBXGroup;
 			children = (
-				549A026F25F51C4D004EAD53 /* AdjacencyMatrix.swift */,
 				5425CA93260E5CB40044CC20 /* BruteForceSolution.swift */,
 				545CB61326137EF700EBB425 /* SetBrutForceSolution.swift */,
 			);
@@ -367,7 +364,6 @@
 				54848E232611F3B00003E193 /* EdgeMatrix.swift in Sources */,
 				549A025625F3ED40004EAD53 /* CGPoint.swift in Sources */,
 				54E7BE9A2602854D0047D18D /* AdMatrix.swift in Sources */,
-				549A027025F51C4D004EAD53 /* AdjacencyMatrix.swift in Sources */,
 				549A024825F3EBB4004EAD53 /* СoordinateView.swift in Sources */,
 				545CB61426137EF700EBB425 /* SetBrutForceSolution.swift in Sources */,
 				5474EA5025F7C5A700F43451 /* InputSystem.swift in Sources */,

@@ -16,6 +16,7 @@ struct SetBrutForceSolution {
     private var length = 0
     private var m0 = 0
     private var m1 = 0
+    private var m2 = 0
 
     static func minPath(matrix: AdMatrix) -> [Int] {
         var solution = SetBrutForceSolution(matrix: matrix)
@@ -63,6 +64,36 @@ struct SetBrutForceSolution {
         guard minLen > length, edgeSet.count > 0 else {
             return
         }
+        
+        let d = path[index]
+
+        if path.count > 3 {
+            let cIndex = index - 1
+            let eIndex = index - 2
+
+            let e = path[eIndex]
+            let c = path[cIndex]
+            let ecd = matrix[c, e] + matrix[c, d] - matrix[e, d]
+
+            var a = path[0]
+            for i in 1..<cIndex {
+                let b = path[i]
+
+                let ab = matrix[a, b]
+                let ac = matrix[a, c]
+
+                // remove unoptimal more optimal
+                let acb = ac + matrix[b, c] - ab
+                if acb < ecd {
+                    m2 += 1
+                    return
+                }
+
+                a = b
+            }
+        }
+        
+        
 
         var nextEdgeSet = edgeSet
 //        debugPrint("path: \(path)")
