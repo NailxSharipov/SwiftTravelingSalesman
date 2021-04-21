@@ -72,12 +72,31 @@ public struct AdMatrix {
         
         return abcd <= acbd || abcd <= bcda
     }
+    
+    func isConflict(a: Int, b: Int, c: Int, d: Int) -> Bool {
+        let ab = self[a, b]
+        let cd = self[c, d]
+
+        let ac = self[a, c]
+        let bd = self[b, d]
+
+        let bc = self[b, c]
+        let da = self[d, a]
+        
+        let abcd = ab + cd // edge
+        let acbd = ac + bd
+        let bcda = bc + da
+        
+        return abcd > acbd || abcd > bcda
+    }
 
 }
 
 public extension AdMatrix {
     
-    public init(nodes: [CGPoint], scale: CGFloat) {
+    static let defaultScale: CGFloat = 10000
+    
+    init(nodes: [CGPoint], scale: CGFloat = Self.defaultScale) {
         self.size = nodes.count
         let count = size * size
         var array = [Int](repeating: 0, count: count)
@@ -98,4 +117,9 @@ public extension AdMatrix {
         }
         self.array = array
     }
+    
+    func scale(length: Int, scale: CGFloat = Self.defaultScale) -> CGFloat {
+        CGFloat(length) / scale
+    }
+    
 }

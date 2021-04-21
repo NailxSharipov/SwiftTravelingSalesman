@@ -6,44 +6,80 @@
 //
 
 import SwiftUI
+import TravelingSalesmanLibrary
 
 final class SplitSurfaceLogic: ObservableObject, Stage {
 
     private (set) var pageIndex: Int
     private let key = String(describing: SplitSurfaceLogic.self)
-    private let data: [[CGPoint]]
+    private let data: [SplitSurfaceData.Data]
     private var moveIndex: Int?
     private var startPosition: CGPoint = .zero
     
-    @Published var points: [CGPoint] = []
-    var smartPath: [CGPoint] {
-        return points
+    struct ViewModel {
+        let dots: [DotView.Data]
+        let hordes: [EdgeView.Data]
+        let steps: [EdgeView.Data]
     }
-
     
-    init(data: [[CGPoint]]) {
+    @Published var points: [CGPoint] = []
+    var viewModel: ViewModel {
+        let matrix = AdMatrix(nodes: self.points)
+        let info = SurfaceSplitSolution.info(matrix: matrix)
+        
+        var dots = [DotView.Data]()
+        dots.reserveCapacity(info.dots.count)
+        for dot in info.dots {
+            let point = points[dot.index]
+            dots.append(DotView.Data(index: dot.index, point: point, name: dot.description, color: .gray))
+        }
+        
+        var hordes = [EdgeView.Data]()
+        hordes.reserveCapacity(info.hordes.count)
+        var i = 0
+        for edge in info.hordes {
+            let a = points[edge.a]
+            let b = points[edge.b]
+            hordes.append(EdgeView.Data(index: i, points: [a, b]))
+            i += 1
+        }
+        
+        var steps = [EdgeView.Data]()
+        steps.reserveCapacity(info.steps.count)
+        i = 0
+        for edge in info.steps {
+            let a = points[edge.a]
+            let b = points[edge.b]
+            steps.append(EdgeView.Data(index: i, points: [a, b]))
+            i += 1
+        }
+
+        return ViewModel(dots: dots, hordes: hordes, steps: steps)
+    }
+    
+    init(data: [SplitSurfaceData.Data]) {
         self.data = data
 //        self.pageIndex = 0
         self.pageIndex = UserDefaults.standard.integer(forKey: key)
         
-        self.points = self.data[self.pageIndex]
-        debugPrint(self.pageIndex)
+        self.points = self.data[self.pageIndex].points
+        (NSApplication.shared.delegate as? AppDelegate)?.title = "SplitSurface (\(pageIndex))"
     }
     
     func onNext() {
         let n = self.data.count
         self.pageIndex = (self.pageIndex + 1) % n
         UserDefaults.standard.set(self.pageIndex, forKey: key)
-        self.points = self.data[self.pageIndex]
-        debugPrint(self.pageIndex)
+        self.points = self.data[self.pageIndex].points
+        (NSApplication.shared.delegate as? AppDelegate)?.title = "SplitSurface (\(pageIndex))"
     }
     
     func onPrev() {
         let n = self.data.count
         self.pageIndex = (self.pageIndex - 1 + n) % n
         UserDefaults.standard.set(pageIndex, forKey: self.key)
-        self.points = self.data[self.pageIndex]
-        debugPrint(self.pageIndex)
+        self.points = self.data[self.pageIndex].points
+        (NSApplication.shared.delegate as? AppDelegate)?.title = "SplitSurface (\(pageIndex))"
     }
     
     func onStart(start: CGPoint, radius: CGFloat) -> Bool {

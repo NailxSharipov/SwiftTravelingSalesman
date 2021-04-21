@@ -22,34 +22,53 @@ struct DebugApp: App {
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
 
-    final class CustomWindow: NSWindow {
-        
-        let inputSystem = InputSystem()
-        
-        override func keyDown(with: NSEvent) {
-            if !self.inputSystem.onKeyDown(keyCode: with.keyCode) {
-                super.keyDown(with: with)
-            }
+    var title: String? {
+        get {
+            window?.title
+        }
+        set {
+            window?.title = newValue ?? ""
         }
     }
     
-    private var window: CustomWindow?
-    
+    private var window: NSWindow?
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        let aWindow = CustomWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+        let aWindow = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 1024, height: 768),
+            styleMask: [.titled, .closable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
-        aWindow.center()
         aWindow.setFrameAutosaveName("DebugApp")
-        
-        let contentView = StageNavigator().environmentObject(aWindow.inputSystem)
-        
-        aWindow.contentView = NSHostingView(rootView: contentView)
+        aWindow.contentViewController = CustomController()
+        aWindow.center()
         aWindow.makeKeyAndOrderFront(nil)
+        aWindow.titlebarSeparatorStyle = .shadow
+
         
         self.window = aWindow
     }
 }
 
+final class CustomController: NSViewController {
+    
+    private let inputSystem = InputSystem()
+    
+    override func loadView() {
+        let contentView = StageNavigator().environmentObject(self.inputSystem)
+        view = NSHostingView(rootView: contentView)
+        view.frame = NSRect(x: 0, y: 0, width: 1024, height: 768)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.keyDown, handler: didPress)
+    }
+
+    func didPress(event: NSEvent) -> NSEvent {
+        var pos = self.view.convert(event.locationInWindow, from: nil)
+        pos.y -= 30 // title offset
+        self.inputSystem.onKeyDown(keyCode: event.keyCode, location: pos)
+        return event
+    }
+}

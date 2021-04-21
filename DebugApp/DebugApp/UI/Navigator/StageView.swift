@@ -20,18 +20,19 @@ struct StageView: View {
     }
 
     var body: some View {
-        
+        self.inputSystem.dragAreaState = dragAreaState
         return GeometryReader { geometry in
             ZStack {
                 СoordinateView(state: self.dragAreaState).background(Color.white)
-                self.content(size: geometry.size).allowsHitTesting(false)
+                self.content(geometry: geometry).allowsHitTesting(false)
             }.gesture(MagnificationGesture()
                 .onChanged { scale in
                     self.dragAreaState.modify(scale: scale)
                 }
                 .onEnded { scale in
                     self.dragAreaState.apply(scale: scale)
-                })
+                }
+            )
             .gesture(DragGesture()
                 .onChanged { data in
                     self.dragAreaState.move(start: data.startLocation, current: data.location)
@@ -43,12 +44,21 @@ struct StageView: View {
         }
     }
 
-    func content(size: CGSize) -> some View {
-        self.dragAreaState.sceneSize = size
+    func content(geometry: GeometryProxy) -> some View {
+        self.dragAreaState.sceneSize = geometry.size
 
+        self.inputSystem.origin = geometry.frame(in: .global).origin
         self.inputSystem.unsubscribeAll()
         
         switch self.stageState.current {
+        case .graphReformation:
+            let logic = GraphReformationLogic(data: GraphReformationData.data)
+            self.inputSystem.subscribe(logic)
+            self.dragAreaState.dragArea = logic
+            
+            let scene = GraphReformationView(state: self.dragAreaState, logic: logic)
+            
+            return AnyView(scene)
         case .splitSurface:
             let logic = SplitSurfaceLogic(data: SplitSurfaceData.data)
             self.inputSystem.subscribe(logic)
@@ -67,5 +77,4 @@ struct StageView: View {
             return AnyView(scene)
         }
     }
-
 }

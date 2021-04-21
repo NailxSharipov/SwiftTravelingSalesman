@@ -5,7 +5,6 @@
 //  Created by Nail Sharipov on 15.04.2021.
 //
 
-
 struct EdgeMatrix {
 
     let size: Int
@@ -13,7 +12,12 @@ struct EdgeMatrix {
 
     @inline(__always)
     subscript(i: Int, j: Int) -> UnoptimalEdgeMatrix {
-        array[i * size + j]
+        array[index(i, j)]
+    }
+    
+    @inline(__always)
+    func index(_ i: Int, _ j: Int) -> Int {
+        i * size + j
     }
 
     init(matrix: AdMatrix) {
@@ -46,6 +50,21 @@ struct EdgeMatrix {
         }
 
         self.array = buffer
+    }
+    
+    func intersect(a: Int, b: Int) -> [Edge] {
+        let iMat = self[a, b]
+        var edges = [Edge]()
+        edges.reserveCapacity(size)
+        for i in 0..<size where a != i {
+            for j in 0..<size where b != j && i != j && iMat[i, j] {
+                if a != j && b != i {
+                    edges.append(Edge(a: i, b: j))
+                }
+            }
+        }
+        
+        return edges
     }
 }
 

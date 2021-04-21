@@ -10,6 +10,9 @@
 		54368F3126284E6300F9DAF1 /* TravelingSalesmanLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54368F2726284E0700F9DAF1 /* TravelingSalesmanLibrary.framework */; };
 		54368F3226284E6300F9DAF1 /* TravelingSalesmanLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54368F2726284E0700F9DAF1 /* TravelingSalesmanLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54368F35262853FC00F9DAF1 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F34262853FC00F9DAF1 /* PathView.swift */; };
+		546CAB28262B3D1C00B86C12 /* GraphReformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB27262B3D1C00B86C12 /* GraphReformationView.swift */; };
+		546CAB2A262B3D2D00B86C12 /* GraphReformationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB29262B3D2D00B86C12 /* GraphReformationLogic.swift */; };
+		546CAB2C262B3D3800B86C12 /* GraphReformationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB2B262B3D3800B86C12 /* GraphReformationData.swift */; };
 		546DB64E26270EB2001A7B18 /* DebugApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DB64D26270EB2001A7B18 /* DebugApp.swift */; };
 		546DB65026270EB2001A7B18 /* StageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DB64F26270EB2001A7B18 /* StageNavigator.swift */; };
 		546DB65226270EB3001A7B18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 546DB65126270EB3001A7B18 /* Assets.xcassets */; };
@@ -32,6 +35,8 @@
 		546DB6AC2627601B001A7B18 /* BruteForceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DB6AB2627601B001A7B18 /* BruteForceData.swift */; };
 		546DB6AF2627602C001A7B18 /* SplitSurfaceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DB6AE2627602C001A7B18 /* SplitSurfaceData.swift */; };
 		546DB6B3262761D4001A7B18 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DB6B2262761D4001A7B18 /* DotView.swift */; };
+		54A1F41C262BF3A10098635F /* BowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F41B262BF3A10098635F /* BowView.swift */; };
+		54BCFC9A262879FB007814EC /* EdgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BCFC99262879FB007814EC /* EdgeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +73,9 @@
 /* Begin PBXFileReference section */
 		54368F2126284E0700F9DAF1 /* TravelingSalesmanLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TravelingSalesmanLibrary.xcodeproj; path = ../TravelingSalesmanLibrary/TravelingSalesmanLibrary.xcodeproj; sourceTree = "<group>"; };
 		54368F34262853FC00F9DAF1 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
+		546CAB27262B3D1C00B86C12 /* GraphReformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationView.swift; sourceTree = "<group>"; };
+		546CAB29262B3D2D00B86C12 /* GraphReformationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationLogic.swift; sourceTree = "<group>"; };
+		546CAB2B262B3D3800B86C12 /* GraphReformationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationData.swift; sourceTree = "<group>"; };
 		546DB64A26270EB2001A7B18 /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		546DB64D26270EB2001A7B18 /* DebugApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugApp.swift; sourceTree = "<group>"; };
 		546DB64F26270EB2001A7B18 /* StageNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StageNavigator.swift; path = ../../StageNavigator.swift; sourceTree = "<group>"; };
@@ -93,6 +101,8 @@
 		546DB6AB2627601B001A7B18 /* BruteForceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceData.swift; sourceTree = "<group>"; };
 		546DB6AE2627602C001A7B18 /* SplitSurfaceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitSurfaceData.swift; sourceTree = "<group>"; };
 		546DB6B2262761D4001A7B18 /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
+		54A1F41B262BF3A10098635F /* BowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowView.swift; sourceTree = "<group>"; };
+		54BCFC99262879FB007814EC /* EdgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +131,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		546CAB24262B3CC300B86C12 /* GraphReformation */ = {
+			isa = PBXGroup;
+			children = (
+				546CAB27262B3D1C00B86C12 /* GraphReformationView.swift */,
+				546CAB29262B3D2D00B86C12 /* GraphReformationLogic.swift */,
+				546CAB2B262B3D3800B86C12 /* GraphReformationData.swift */,
+			);
+			path = GraphReformation;
 			sourceTree = "<group>";
 		};
 		546DB64126270EB2001A7B18 = {
@@ -210,6 +230,7 @@
 		546DB69926275B39001A7B18 /* Stage */ = {
 			isa = PBXGroup;
 			children = (
+				546CAB24262B3CC300B86C12 /* GraphReformation */,
 				546DB6A626275FFD001A7B18 /* BruteForce */,
 				546DB6A126275F4C001A7B18 /* SplitSurface */,
 			);
@@ -241,6 +262,8 @@
 			children = (
 				546DB6B2262761D4001A7B18 /* DotView.swift */,
 				54368F34262853FC00F9DAF1 /* PathView.swift */,
+				54BCFC99262879FB007814EC /* EdgeView.swift */,
+				54A1F41B262BF3A10098635F /* BowView.swift */,
 			);
 			path = Shape;
 			sourceTree = "<group>";
@@ -341,9 +364,12 @@
 			files = (
 				546DB66A26270FDC001A7B18 /* СoordinateView.swift in Sources */,
 				546DB68826271355001A7B18 /* StageView.swift in Sources */,
+				54BCFC9A262879FB007814EC /* EdgeView.swift in Sources */,
 				546DB66C26270FDC001A7B18 /* InputSystem.swift in Sources */,
+				546CAB28262B3D1C00B86C12 /* GraphReformationView.swift in Sources */,
 				546DB6A326275F65001A7B18 /* SplitSurfaceLogic.swift in Sources */,
 				546DB67D262711CC001A7B18 /* StagePicker.swift in Sources */,
+				546CAB2A262B3D2D00B86C12 /* GraphReformationLogic.swift in Sources */,
 				54368F35262853FC00F9DAF1 /* PathView.swift in Sources */,
 				546DB68426271267001A7B18 /* StageState.swift in Sources */,
 				546DB66926270FDC001A7B18 /* Stage.swift in Sources */,
@@ -354,11 +380,13 @@
 				546DB69C26275B83001A7B18 /* SplitSurfaceView.swift in Sources */,
 				546DB6AF2627602C001A7B18 /* SplitSurfaceData.swift in Sources */,
 				546DB66D26270FDC001A7B18 /* DragArea.swift in Sources */,
+				54A1F41C262BF3A10098635F /* BowView.swift in Sources */,
 				546DB66B26270FDC001A7B18 /* DragAreaState.swift in Sources */,
 				546DB64E26270EB2001A7B18 /* DebugApp.swift in Sources */,
 				546DB6B3262761D4001A7B18 /* DotView.swift in Sources */,
 				546DB680262711FF001A7B18 /* StageRow.swift in Sources */,
 				546DB6A926276011001A7B18 /* BruteForceLogic.swift in Sources */,
+				546CAB2C262B3D3800B86C12 /* GraphReformationData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ struct BruteForceView: View {
         let points = self.logic.points
         var cities = [DotView.Data]()
         for (i, p) in points.enumerated() {
-            cities.append(DotView.Data(index: i, point: p, name: "\(i)"))
+            cities.append(DotView.Data(index: i, point: p, name: "\(i)", color: .gray))
         }
         
         let minPath = self.logic.minPath

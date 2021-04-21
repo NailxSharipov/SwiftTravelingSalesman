@@ -1,18 +1,18 @@
 //
-//  SplitSurfaceView.swift
+//  GraphReformationView.swift
 //  DebugApp
 //
-//  Created by Nail Sharipov on 14.04.2021.
+//  Created by Nail Sharipov on 17.04.2021.
 //
 
 import SwiftUI
 
-struct SplitSurfaceView: View {
+struct GraphReformationView: View {
 
-    @ObservedObject var logic: SplitSurfaceLogic
+    @ObservedObject var logic: GraphReformationLogic
     private let state: DragAreaState
     
-    init(state: DragAreaState, logic: SplitSurfaceLogic) {
+    init(state: DragAreaState, logic: GraphReformationLogic) {
         self.state = state
         self.logic = logic
     }
@@ -28,17 +28,14 @@ struct SplitSurfaceView: View {
 //                    color: Color.edge
 //                )
 //            }
-            ForEach(viewModel.hordes, id: \.index) { edge in
-                EdgeView(
+            ForEach(viewModel.bows, id: \.index) { bow in
+                BowView(
                     state: self.state,
-                    points: edge.points,
-                    color: Color.horde
-                )
-            }
-            ForEach(viewModel.steps, id: \.index) { edge in
-                EdgeView(
-                    state: self.state,
-                    points: edge.points,
+                    start: bow.start,
+                    end: bow.end,
+                    length: bow.length,
+                    isDirect: bow.isDirect,
+                    description: bow.description,
                     color: Color.step
                 )
             }
@@ -47,7 +44,7 @@ struct SplitSurfaceView: View {
                     state: self.state,
                     point: dot.point,
                     name: dot.name,
-                    color: Color.gray
+                    color: dot.color
                 )
             }
         }

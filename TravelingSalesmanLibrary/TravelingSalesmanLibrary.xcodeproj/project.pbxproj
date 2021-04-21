@@ -25,6 +25,15 @@
 		54368F1D26284D8E00F9DAF1 /* AdMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F0F26284D8E00F9DAF1 /* AdMatrix.swift */; };
 		54368F1E26284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F1026284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift */; };
 		54368F372628556700F9DAF1 /* SurfaceSplitSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */; };
+		546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */; };
+		546CAB35262B48F400B86C12 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB34262B48F400B86C12 /* City.swift */; };
+		546CAB39262B491B00B86C12 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB38262B491B00B86C12 /* Road.swift */; };
+		54A1F420262C8CF20098635F /* FixSizeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F41F262C8CF20098635F /* FixSizeSet.swift */; };
+		54A1F425262C8DD60098635F /* FixSizeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F424262C8DD60098635F /* FixSizeArray.swift */; };
+		54A1F42B262CB67A0098635F /* CityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F42A262CB67A0098635F /* CityMap.swift */; };
+		54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */; };
+		54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F494262E9E4A0098635F /* BitMatrix.swift */; };
+		54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F498262EA24A0098635F /* LinkBitMatrix.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +68,15 @@
 		54368F0F26284D8E00F9DAF1 /* AdMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdMatrix.swift; sourceTree = "<group>"; };
 		54368F1026284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EdgeMatrix+Impossible.swift"; sourceTree = "<group>"; };
 		54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceSplitSolution.swift; sourceTree = "<group>"; };
+		546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationSolution.swift; sourceTree = "<group>"; };
+		546CAB34262B48F400B86C12 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		546CAB38262B491B00B86C12 /* Road.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
+		54A1F41F262C8CF20098635F /* FixSizeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixSizeSet.swift; sourceTree = "<group>"; };
+		54A1F424262C8DD60098635F /* FixSizeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixSizeArray.swift; sourceTree = "<group>"; };
+		54A1F42A262CB67A0098635F /* CityMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityMap.swift; sourceTree = "<group>"; };
+		54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Bit.swift"; sourceTree = "<group>"; };
+		54A1F494262E9E4A0098635F /* BitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMatrix.swift; sourceTree = "<group>"; };
+		54A1F498262EA24A0098635F /* LinkBitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBitMatrix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +139,7 @@
 		54368EFF26284D8E00F9DAF1 /* Solution */ = {
 			isa = PBXGroup;
 			children = (
+				546CAB2D262B3E0800B86C12 /* GraphReformation */,
 				54368F0026284D8E00F9DAF1 /* BruteForceSolution.swift */,
 				54368F0126284D8E00F9DAF1 /* SetBrutForceSolution.swift */,
 				54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */,
@@ -131,6 +150,8 @@
 		54368F0226284D8E00F9DAF1 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				54A1F48D262E9E0E0098635F /* Bit */,
+				54A1F423262C8DC10098635F /* FixSize */,
 				54368F0326284D8E00F9DAF1 /* PowerIndex.swift */,
 				54368F0426284D8E00F9DAF1 /* Edge.swift */,
 				54368F0526284D8E00F9DAF1 /* OpenLinkedList.swift */,
@@ -161,6 +182,36 @@
 				54368F1026284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift */,
 			);
 			path = Matrix;
+			sourceTree = "<group>";
+		};
+		546CAB2D262B3E0800B86C12 /* GraphReformation */ = {
+			isa = PBXGroup;
+			children = (
+				546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */,
+				546CAB34262B48F400B86C12 /* City.swift */,
+				546CAB38262B491B00B86C12 /* Road.swift */,
+				54A1F42A262CB67A0098635F /* CityMap.swift */,
+			);
+			path = GraphReformation;
+			sourceTree = "<group>";
+		};
+		54A1F423262C8DC10098635F /* FixSize */ = {
+			isa = PBXGroup;
+			children = (
+				54A1F41F262C8CF20098635F /* FixSizeSet.swift */,
+				54A1F424262C8DD60098635F /* FixSizeArray.swift */,
+			);
+			path = FixSize;
+			sourceTree = "<group>";
+		};
+		54A1F48D262E9E0E0098635F /* Bit */ = {
+			isa = PBXGroup;
+			children = (
+				54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */,
+				54A1F494262E9E4A0098635F /* BitMatrix.swift */,
+				54A1F498262EA24A0098635F /* LinkBitMatrix.swift */,
+			);
+			path = Bit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,18 +324,27 @@
 			files = (
 				54368F1926284D8E00F9DAF1 /* StaticList.swift in Sources */,
 				54368F1C26284D8E00F9DAF1 /* EdgeMatrix.swift in Sources */,
+				54A1F425262C8DD60098635F /* FixSizeArray.swift in Sources */,
 				54368F1226284D8E00F9DAF1 /* SetBrutForceSolution.swift in Sources */,
+				546CAB39262B491B00B86C12 /* Road.swift in Sources */,
 				54368F1526284D8E00F9DAF1 /* OpenLinkedList.swift in Sources */,
 				54368F1B26284D8E00F9DAF1 /* ClosedLinkedList.swift in Sources */,
 				54368F1D26284D8E00F9DAF1 /* AdMatrix.swift in Sources */,
+				54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */,
 				54368F1126284D8E00F9DAF1 /* BruteForceSolution.swift in Sources */,
 				54368F1426284D8E00F9DAF1 /* Edge.swift in Sources */,
 				54368F1E26284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift in Sources */,
+				546CAB35262B48F400B86C12 /* City.swift in Sources */,
+				54A1F42B262CB67A0098635F /* CityMap.swift in Sources */,
+				54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */,
 				54368F372628556700F9DAF1 /* SurfaceSplitSolution.swift in Sources */,
 				54368F1A26284D8E00F9DAF1 /* EdgeSet.swift in Sources */,
+				54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */,
 				54368F1826284D8E00F9DAF1 /* EdgeSet+Availability.swift in Sources */,
+				54A1F420262C8CF20098635F /* FixSizeSet.swift in Sources */,
 				54368F1626284D8E00F9DAF1 /* ArraySet.swift in Sources */,
 				54368F1326284D8E00F9DAF1 /* PowerIndex.swift in Sources */,
+				546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */,
 				54368F1726284D8E00F9DAF1 /* UnoptimalEdgeMatrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

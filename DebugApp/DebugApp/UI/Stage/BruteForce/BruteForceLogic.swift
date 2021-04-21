@@ -9,7 +9,6 @@ import SwiftUI
 import TravelingSalesmanLibrary
 
 final class BruteForceLogic: ObservableObject, Stage {
-
     private (set) var pageIndex: Int
     private let key = String(describing: BruteForceLogic.self)
     private let data: [[CGPoint]]
@@ -18,7 +17,7 @@ final class BruteForceLogic: ObservableObject, Stage {
     
     @Published var points: [CGPoint] = []
     var minPath: [CGPoint] {
-        let matrix = AdMatrix(nodes: self.points, scale: 10000)
+        let matrix = AdMatrix(nodes: self.points)
 
         let indices = BruteForceSolution.minPath(matrix: matrix)
         var result = [CGPoint]()
@@ -37,7 +36,7 @@ final class BruteForceLogic: ObservableObject, Stage {
         self.pageIndex = UserDefaults.standard.integer(forKey: key)
         
         self.points = self.data[self.pageIndex]
-        debugPrint(self.pageIndex)
+        (NSApplication.shared.delegate as? AppDelegate)?.title = "BruteForce (\(pageIndex))"
     }
     
     func onNext() {
@@ -45,7 +44,7 @@ final class BruteForceLogic: ObservableObject, Stage {
         self.pageIndex = (self.pageIndex + 1) % n
         UserDefaults.standard.set(self.pageIndex, forKey: key)
         self.points = self.data[self.pageIndex]
-        debugPrint(self.pageIndex)
+        (NSApplication.shared.delegate as? AppDelegate)?.title = "BruteForce (\(pageIndex))"
     }
     
     func onPrev() {
@@ -53,7 +52,7 @@ final class BruteForceLogic: ObservableObject, Stage {
         self.pageIndex = (self.pageIndex - 1 + n) % n
         UserDefaults.standard.set(pageIndex, forKey: self.key)
         self.points = self.data[self.pageIndex]
-        debugPrint(self.pageIndex)
+        (NSApplication.shared.delegate as? AppDelegate)?.title = "BruteForce (\(pageIndex))"
     }
     
     func onStart(start: CGPoint, radius: CGFloat) -> Bool {

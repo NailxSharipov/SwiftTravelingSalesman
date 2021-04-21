@@ -28,7 +28,7 @@ final class DragAreaState: ObservableObject {
         let scale = 0.5 * zoom
         return CGPoint(x: viewPoint.x + scale * sceneSize.width, y: viewPoint.y + scale * sceneSize.height)
     }
-    
+
     @Published var sceneSize: CGSize = .zero
     @Published var zoom: CGFloat = DragAreaState.defaultZoom
     @Published var viewPoint: CGPoint = .zero

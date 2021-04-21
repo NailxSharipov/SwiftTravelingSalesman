@@ -19,6 +19,7 @@ struct DotView: View {
         let index: Int
         let point: CGPoint
         let name: String
+        let color: Color
     }
 
     init(state: DragAreaState, point: CGPoint, name: String, radius: CGFloat = 5, color: Color = .gray) {

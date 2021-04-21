@@ -10,9 +10,10 @@ import SwiftUI
 final class StageState: ObservableObject {
     
     enum StageType: String, CaseIterable {
+        case graphReformation
         case splitSurface
         case bruteForce
     }
     
-    @Published var current: StageType = .splitSurface
+    @Published var current: StageType = .graphReformation
 }
