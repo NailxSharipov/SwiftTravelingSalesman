@@ -20,7 +20,7 @@ extension EdgeMatrix {
                 let c = set.array[b].first
                 set.removeAny(start: b)
 
-//                print(set)
+//                debugPrint(set)
                 let setConnectivityCount = set.connectivityCount(index: c)
                 
                 if setConnectivityCount < connectivity {

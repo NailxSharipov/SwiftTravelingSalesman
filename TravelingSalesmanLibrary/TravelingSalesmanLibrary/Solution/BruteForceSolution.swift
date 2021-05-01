@@ -112,7 +112,7 @@ public struct BruteForceSolution {
                 m3 += 1
                 return
             } else {
-                set1.subtract(newSet)
+                set1.subtract(newSet) // intersect!
             }
         } else {
             newSet = Set<Int>()

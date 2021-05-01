@@ -1,11 +1,11 @@
 //
-//  GraphReformationSolution.swift
+//  RoadSolution.swift
 //  TravelingSalesmanLibrary
 //
-//  Created by Nail Sharipov on 17.04.2021.
+//  Created by Nail Sharipov on 25.04.2021.
 //
 
-public struct GraphReformationSolution {
+public struct RoadSolution {
 
     private let matrix: AdMatrix
     
@@ -17,17 +17,8 @@ public struct GraphReformationSolution {
         public let index: Int
         public let description: String
     }
-    
-    public static func info(matrix: AdMatrix, removed: [Int]) -> Info {
-        let solution = GraphReformationSolution(matrix: matrix)
-        return solution.info(removed: removed)
-    }
-    
-    private init(matrix: AdMatrix) {
-        self.matrix = matrix
-    }
-    
-    func info(removed: [Int]) -> Info {
+
+    public static func solve(matrix: AdMatrix) -> [Int] {
         let linkMatrix = LinkBitMatrix(matrix: matrix)
         let baseMovement = linkMatrix.base
         
@@ -63,13 +54,11 @@ public struct GraphReformationSolution {
         for i in 0..<count {
             cities.append(City(index: i, outRoads: outRoadMap[i], inRoads: inRoadMap[i]))
         }
-
-        // city не нужен
-
+        
         var roadByMask = [RoadMask: Road]()
         roadByMask.reserveCapacity(count * count)
-
-        for index in removed {
+        
+        for index in 2..<count {
             let city = cities[index]
             city.isRemoved = true
             
@@ -115,14 +104,67 @@ public struct GraphReformationSolution {
             }
         }
 
-        return Info(cities: cities)
+//        let lastCity = cities[0]
+        var minPath = [Int](repeating: 0, count: count)
+        var minLength = Int.max
+        
+        let cityA = cities[0]
+        let cityB = cities[1]
+        
+        let allMask: UInt64 = ((1 << count) &- 1) - 0b11
+        
+        for ab in cityA.outRoads {
+            let abMask = ab.mask
+            
+            for ba in cityB.outRoads {
+                let baMask = ba.mask
+                let pathCount = ab.path.count + ba.path.count - 2
+                let pathLength = ab.length + ba.length
+                let pathMask = abMask.bitMask | baMask.bitMask
+                if pathMask == allMask && pathCount == count && pathLength < minLength {
+                    minLength = pathLength
+
+                    for i in 0..<ab.path.count {
+                        minPath[i] = ab.path[i]
+                    }
+                    var j = ab.path.count
+                    for i in 1..<ba.path.count - 1 {
+                        minPath[j] = ba.path[i]
+                        j &+= 1
+                    }
+                }
+            }
+        }
+        
+//        for road in lastCity.outRoads where road.path.count == count {
+//            if road.length < minLength {
+//                minLength = road.length
+//                minPath = road.path
+//            }
+//        }
+        
+//        for inRoad in lastCity.inRoads {
+//            for outRoad in lastCity.outRoads {
+//                let aMask = inRoad.mask
+//                let bMask = outRoad.mask
+//                let abCount = inRoad.path.count + outRoad.path .count - 2
+//                let abLength = inRoad.length + outRoad.length
+//                if aMask.bitMask & bMask.bitMask == 0 && abCount == count && abLength < minLength {
+//                    minLength = abLength
+//
+//                    for i in 0..<inRoad.path.count {
+//                        minPath[i] = inRoad.path[i]
+//                    }
+//                    var j = inRoad.path.count
+//                    for i in 1..<outRoad.path.count - 1 {
+//                        minPath[j] = outRoad.path[i]
+//                        j &+= 1
+//                    }
+//                }
+//            }
+//        }
+
+        return minPath
     }
     
-}
-
-public extension City {
-
-    var description: String {
-        "\(self.index) (\(outRoads.count))"
-    }
 }

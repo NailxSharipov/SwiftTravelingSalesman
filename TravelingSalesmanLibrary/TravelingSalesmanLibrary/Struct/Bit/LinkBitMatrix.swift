@@ -10,6 +10,7 @@ struct LinkBitMatrix {
     let size: Int
     let base: BitMatrix
     private let array: [BitMatrix?]
+    private let hordes: [Bool]
 
     @inline(__always)
     subscript(i: Int, j: Int) -> BitMatrix? {
@@ -20,7 +21,11 @@ struct LinkBitMatrix {
     func index(_ i: Int, _ j: Int) -> Int {
         i * size + j
     }
-
+    
+    @inline(__always)
+    func isHord(_ i: Int, _ j: Int) -> Bool {
+        hordes[index(i, j)]
+    }
 
     init(matrix: AdMatrix) {
         self.size = matrix.size
@@ -28,7 +33,8 @@ struct LinkBitMatrix {
         var origin = BitMatrix(size: size, fill: .reverseIdentity)
         
         let template = BitMatrix(size: size, fill: .reverseIdentity)
-        var buffer = Array<BitMatrix?>(repeating: nil, count: size * size)
+        var matBuffer = Array<BitMatrix?>(repeating: nil, count: size * size)
+        var horBuffer = Array<Bool>(repeating: false, count: size * size)
 
         for a in 0..<size {
             for b in 0..<size where a != b {
@@ -36,7 +42,7 @@ struct LinkBitMatrix {
                 var set = template
                 for c in 0..<size where c != a && c != b {
                     for d in 0..<size where d != a && d != b && d != c {
-                        if matrix.isConflict(a: a, b: b, c: c, d: d) {
+                        if matrix.isNotPossibleCase(a: a, b: b, c: c, d: d) {
                             set[c, d] = false
                         }
                     }
@@ -49,21 +55,34 @@ struct LinkBitMatrix {
                 set[a] = 0
                 
                 let c = set[b].firstBitNotEmpty(size: size)
-                let mask = set[c]
                 let visited = UInt64(0).setBit(index: a).setBit(index: b).setBit(index: c)
+                let mask = set[c].clearBit(index: a).clearBit(index: b)
                 
-                let isHorde = set.testConnectivity(mask: mask, visited: visited, count: size - 2)
+                let isHorde = !set.testConnectivity(mask: mask, visited: visited, count: size - 2)
+                
+                matBuffer[j] = set
+                horBuffer[j] = isHorde
                 
                 if isHorde {
-                    buffer[j] = nil
                     origin[a, b] = false
-                } else {
-                    buffer[j] = set
                 }
             }
         }
 
         self.base = origin
-        self.array = buffer
+        self.array = matBuffer
+        self.hordes = horBuffer
+    }
+    
+    func possibleSteps() -> [Edge] {
+        var result = [Edge]()
+
+        for a in 0..<size {
+            for b in 0..<size where a != b && !self.isHord(a, b) {
+                result.append(Edge(a: a, b: b))
+            }
+        }
+        
+        return result
     }
 }

@@ -51,6 +51,14 @@ struct StageView: View {
         self.inputSystem.unsubscribeAll()
         
         switch self.stageState.current {
+        case .roadSolution:
+            let logic = RoadSolverLogic(data: RoadSolverData.data)
+            self.inputSystem.subscribe(logic)
+            self.dragAreaState.dragArea = logic
+            
+            let scene = RoadSolverView(state: self.dragAreaState, logic: logic)
+            
+            return AnyView(scene)
         case .graphReformation:
             let logic = GraphReformationLogic(data: GraphReformationData.data)
             self.inputSystem.subscribe(logic)

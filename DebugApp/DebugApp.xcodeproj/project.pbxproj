@@ -10,6 +10,9 @@
 		54368F3126284E6300F9DAF1 /* TravelingSalesmanLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54368F2726284E0700F9DAF1 /* TravelingSalesmanLibrary.framework */; };
 		54368F3226284E6300F9DAF1 /* TravelingSalesmanLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54368F2726284E0700F9DAF1 /* TravelingSalesmanLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54368F35262853FC00F9DAF1 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F34262853FC00F9DAF1 /* PathView.swift */; };
+		546360EC26357DE900282823 /* RoadSolverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546360EB26357DE900282823 /* RoadSolverView.swift */; };
+		546360EE26357DF800282823 /* RoadSolverLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546360ED26357DF800282823 /* RoadSolverLogic.swift */; };
+		546360F026357E0900282823 /* RoadSolverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546360EF26357E0900282823 /* RoadSolverData.swift */; };
 		546CAB28262B3D1C00B86C12 /* GraphReformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB27262B3D1C00B86C12 /* GraphReformationView.swift */; };
 		546CAB2A262B3D2D00B86C12 /* GraphReformationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB29262B3D2D00B86C12 /* GraphReformationLogic.swift */; };
 		546CAB2C262B3D3800B86C12 /* GraphReformationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB2B262B3D3800B86C12 /* GraphReformationData.swift */; };
@@ -73,6 +76,9 @@
 /* Begin PBXFileReference section */
 		54368F2126284E0700F9DAF1 /* TravelingSalesmanLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TravelingSalesmanLibrary.xcodeproj; path = ../TravelingSalesmanLibrary/TravelingSalesmanLibrary.xcodeproj; sourceTree = "<group>"; };
 		54368F34262853FC00F9DAF1 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
+		546360EB26357DE900282823 /* RoadSolverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSolverView.swift; sourceTree = "<group>"; };
+		546360ED26357DF800282823 /* RoadSolverLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSolverLogic.swift; sourceTree = "<group>"; };
+		546360EF26357E0900282823 /* RoadSolverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSolverData.swift; sourceTree = "<group>"; };
 		546CAB27262B3D1C00B86C12 /* GraphReformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationView.swift; sourceTree = "<group>"; };
 		546CAB29262B3D2D00B86C12 /* GraphReformationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationLogic.swift; sourceTree = "<group>"; };
 		546CAB2B262B3D3800B86C12 /* GraphReformationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationData.swift; sourceTree = "<group>"; };
@@ -131,6 +137,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		546360E826357DC100282823 /* RoadSolver */ = {
+			isa = PBXGroup;
+			children = (
+				546360EB26357DE900282823 /* RoadSolverView.swift */,
+				546360ED26357DF800282823 /* RoadSolverLogic.swift */,
+				546360EF26357E0900282823 /* RoadSolverData.swift */,
+			);
+			path = RoadSolver;
 			sourceTree = "<group>";
 		};
 		546CAB24262B3CC300B86C12 /* GraphReformation */ = {
@@ -230,6 +246,7 @@
 		546DB69926275B39001A7B18 /* Stage */ = {
 			isa = PBXGroup;
 			children = (
+				546360E826357DC100282823 /* RoadSolver */,
 				546CAB24262B3CC300B86C12 /* GraphReformation */,
 				546DB6A626275FFD001A7B18 /* BruteForce */,
 				546DB6A126275F4C001A7B18 /* SplitSurface */,
@@ -376,12 +393,15 @@
 				546DB65026270EB2001A7B18 /* StageNavigator.swift in Sources */,
 				546DB6AC2627601B001A7B18 /* BruteForceData.swift in Sources */,
 				546DB672262710C7001A7B18 /* CGPoint.swift in Sources */,
+				546360F026357E0900282823 /* RoadSolverData.swift in Sources */,
 				546DB69F26275B94001A7B18 /* BruteForceView.swift in Sources */,
 				546DB69C26275B83001A7B18 /* SplitSurfaceView.swift in Sources */,
 				546DB6AF2627602C001A7B18 /* SplitSurfaceData.swift in Sources */,
+				546360EC26357DE900282823 /* RoadSolverView.swift in Sources */,
 				546DB66D26270FDC001A7B18 /* DragArea.swift in Sources */,
 				54A1F41C262BF3A10098635F /* BowView.swift in Sources */,
 				546DB66B26270FDC001A7B18 /* DragAreaState.swift in Sources */,
+				546360EE26357DF800282823 /* RoadSolverLogic.swift in Sources */,
 				546DB64E26270EB2001A7B18 /* DebugApp.swift in Sources */,
 				546DB6B3262761D4001A7B18 /* DotView.swift in Sources */,
 				546DB680262711FF001A7B18 /* StageRow.swift in Sources */,

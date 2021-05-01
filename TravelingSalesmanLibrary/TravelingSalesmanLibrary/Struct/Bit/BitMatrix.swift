@@ -211,6 +211,42 @@ struct BitMatrix {
 
         return j == count
     }
+    
+    func connectivityFactor(start: Int, visited: UInt64) -> Int {
+        let n = array.count
+
+        let first = self[start].firstBitNotInMask(mask: visited, size: n)
+        guard first != -1 else { return 0 }
+
+        var visited = visited.setBit(index: first)
+        
+        var mask = self[first].subtract(word: visited) // TODD may be not needed
+
+        var j = 1
+        var nextMask: UInt64 = 0
+        
+        repeat {
+            for i in 0..<n {
+                if mask.isBit(index: i) {
+                    visited = visited.setBit(index: i)
+                    let word = array[i]
+                    nextMask = nextMask | word
+                    j += 1
+                }
+            }
+            mask = nextMask.subtract(word: visited)
+            nextMask = 0
+        } while mask != 0
+
+        return j
+    }
+    
+    func isClosed(index: Int, a: Int, b: Int) -> Bool {
+        var mask = self[index]
+        mask = mask.clearBit(index: a).clearBit(index: b)
+        return mask == 0
+    }
+
 }
 
 extension BitMatrix: CustomStringConvertible {
@@ -220,6 +256,7 @@ extension BitMatrix: CustomStringConvertible {
         let last = array.count - 1
         
         
+        result.append("\r\n")
         result.append("   ")
         for i in 0...last {
             result.append(String(format:"%2X ", i))

@@ -25,15 +25,18 @@
 		54368F1D26284D8E00F9DAF1 /* AdMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F0F26284D8E00F9DAF1 /* AdMatrix.swift */; };
 		54368F1E26284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F1026284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift */; };
 		54368F372628556700F9DAF1 /* SurfaceSplitSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */; };
+		546360E526357DB700282823 /* RoadSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546360E426357DB700282823 /* RoadSolution.swift */; };
 		546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */; };
 		546CAB35262B48F400B86C12 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB34262B48F400B86C12 /* City.swift */; };
 		546CAB39262B491B00B86C12 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB38262B491B00B86C12 /* Road.swift */; };
 		54A1F420262C8CF20098635F /* FixSizeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F41F262C8CF20098635F /* FixSizeSet.swift */; };
 		54A1F425262C8DD60098635F /* FixSizeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F424262C8DD60098635F /* FixSizeArray.swift */; };
-		54A1F42B262CB67A0098635F /* CityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F42A262CB67A0098635F /* CityMap.swift */; };
 		54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */; };
 		54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F494262E9E4A0098635F /* BitMatrix.swift */; };
 		54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F498262EA24A0098635F /* LinkBitMatrix.swift */; };
+		54BECD0D2634300C003CB241 /* Path64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BECD0C2634300C003CB241 /* Path64.swift */; };
+		54CC41B726384AC1004AD77C /* BruteForceCutSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC41B626384AC1004AD77C /* BruteForceCutSolution.swift */; };
+		54CC41B926387379004AD77C /* SubSetId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC41B826387379004AD77C /* SubSetId.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,15 +71,18 @@
 		54368F0F26284D8E00F9DAF1 /* AdMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdMatrix.swift; sourceTree = "<group>"; };
 		54368F1026284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EdgeMatrix+Impossible.swift"; sourceTree = "<group>"; };
 		54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceSplitSolution.swift; sourceTree = "<group>"; };
+		546360E426357DB700282823 /* RoadSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSolution.swift; sourceTree = "<group>"; };
 		546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationSolution.swift; sourceTree = "<group>"; };
 		546CAB34262B48F400B86C12 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		546CAB38262B491B00B86C12 /* Road.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
 		54A1F41F262C8CF20098635F /* FixSizeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixSizeSet.swift; sourceTree = "<group>"; };
 		54A1F424262C8DD60098635F /* FixSizeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixSizeArray.swift; sourceTree = "<group>"; };
-		54A1F42A262CB67A0098635F /* CityMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityMap.swift; sourceTree = "<group>"; };
 		54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Bit.swift"; sourceTree = "<group>"; };
 		54A1F494262E9E4A0098635F /* BitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMatrix.swift; sourceTree = "<group>"; };
 		54A1F498262EA24A0098635F /* LinkBitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBitMatrix.swift; sourceTree = "<group>"; };
+		54BECD0C2634300C003CB241 /* Path64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path64.swift; sourceTree = "<group>"; };
+		54CC41B626384AC1004AD77C /* BruteForceCutSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceCutSolution.swift; sourceTree = "<group>"; };
+		54CC41B826387379004AD77C /* SubSetId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSetId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,7 @@
 				54368F0026284D8E00F9DAF1 /* BruteForceSolution.swift */,
 				54368F0126284D8E00F9DAF1 /* SetBrutForceSolution.swift */,
 				54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */,
+				54CC41B626384AC1004AD77C /* BruteForceCutSolution.swift */,
 			);
 			path = Solution;
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 		54368F0626284D8E00F9DAF1 /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				54CC41B826387379004AD77C /* SubSetId.swift */,
 				54368F0726284D8E00F9DAF1 /* ArraySet.swift */,
 				54368F0826284D8E00F9DAF1 /* UnoptimalEdgeMatrix.swift */,
 				54368F0926284D8E00F9DAF1 /* EdgeSet+Availability.swift */,
@@ -190,7 +198,7 @@
 				546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */,
 				546CAB34262B48F400B86C12 /* City.swift */,
 				546CAB38262B491B00B86C12 /* Road.swift */,
-				54A1F42A262CB67A0098635F /* CityMap.swift */,
+				546360E426357DB700282823 /* RoadSolution.swift */,
 			);
 			path = GraphReformation;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 				54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */,
 				54A1F494262E9E4A0098635F /* BitMatrix.swift */,
 				54A1F498262EA24A0098635F /* LinkBitMatrix.swift */,
+				54BECD0C2634300C003CB241 /* Path64.swift */,
 			);
 			path = Bit;
 			sourceTree = "<group>";
@@ -335,16 +344,19 @@
 				54368F1426284D8E00F9DAF1 /* Edge.swift in Sources */,
 				54368F1E26284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift in Sources */,
 				546CAB35262B48F400B86C12 /* City.swift in Sources */,
-				54A1F42B262CB67A0098635F /* CityMap.swift in Sources */,
 				54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */,
 				54368F372628556700F9DAF1 /* SurfaceSplitSolution.swift in Sources */,
 				54368F1A26284D8E00F9DAF1 /* EdgeSet.swift in Sources */,
 				54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */,
 				54368F1826284D8E00F9DAF1 /* EdgeSet+Availability.swift in Sources */,
+				54CC41B926387379004AD77C /* SubSetId.swift in Sources */,
+				54CC41B726384AC1004AD77C /* BruteForceCutSolution.swift in Sources */,
 				54A1F420262C8CF20098635F /* FixSizeSet.swift in Sources */,
 				54368F1626284D8E00F9DAF1 /* ArraySet.swift in Sources */,
+				54BECD0D2634300C003CB241 /* Path64.swift in Sources */,
 				54368F1326284D8E00F9DAF1 /* PowerIndex.swift in Sources */,
 				546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */,
+				546360E526357DB700282823 /* RoadSolution.swift in Sources */,
 				54368F1726284D8E00F9DAF1 /* UnoptimalEdgeMatrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

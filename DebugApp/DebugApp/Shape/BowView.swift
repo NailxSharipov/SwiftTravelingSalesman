@@ -42,7 +42,11 @@ struct BowView: View {
         let direction = end - start
         let normal = CGPoint(x: -direction.y, y: direction.x)
 
-        let anchor = middle + scale * normal
+        let dirLen = (start - end).magnitude.squareRoot()
+        
+        let s = scale * length / dirLen
+        
+        let anchor = middle + s * normal
         
         self.points = [start, end, anchor]
         
@@ -73,20 +77,20 @@ struct BowView: View {
                 path.addLine(to: bowPoints[1])
             }.strokedPath(.init(lineWidth: lineWidth, lineCap: .round)).foregroundColor(color)
         } else {
-            let radius: CGFloat = 4
+//            let radius: CGFloat = 4
             let middle = bowPoints[2]
             let name = description!
-            let dotPos = middle
+//            let dotPos = middle
             let txtPos = middle + CGPoint(x: 0, y: 3)
             ZStack {
                 Path { path in
                     path.move(to: bowPoints[0])
                     path.addQuadCurve(to: bowPoints[1], control: middle)
                 }.strokedPath(.init(lineWidth: lineWidth, lineCap: .round)).foregroundColor(color)
-                Circle()
-                    .fill(self.color)
-                    .frame(width: 2 * radius, height: 2 * radius)
-                    .position(dotPos)
+//                Circle()
+//                    .fill(self.color)
+//                    .frame(width: 2 * radius, height: 2 * radius)
+//                    .position(dotPos)
                 Text(name).font(.title2).position(txtPos).foregroundColor(.gray)
             }
         }

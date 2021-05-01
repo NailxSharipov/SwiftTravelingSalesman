@@ -50,6 +50,7 @@ struct SplitSurfaceView: View {
                     color: Color.gray
                 )
             }
+//            PathView(state: state, points: viewModel.circle, lineWidth: 5)
         }
         
     }

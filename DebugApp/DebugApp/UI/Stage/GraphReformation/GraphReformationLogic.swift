@@ -25,29 +25,32 @@ final class GraphReformationLogic: ObservableObject, Stage {
     @Published var points: [CGPoint] = []
     var viewModel: ViewModel {
         let matrix = AdMatrix(nodes: self.points)
-        let info = GraphReformationSolution.info(matrix: matrix, reform: [])
+        let info = GraphReformationSolution.info(matrix: matrix, removed: removed)
         
         var dots = [DotView.Data]()
         dots.reserveCapacity(info.cities.count)
         var roads = [Road]()
-        var set = Set<RoadPair>()
+        var set = Set<RoadMask>()
         for city in info.cities {
             let point = points[city.index]
             let color: Color
-            if removed.contains(city.index) {
+            if city.isRemoved {
                 color = Color(red: 1, green: 0.5, blue: 0.5, opacity: 0.7)
             } else {
                 color = Color.gray
+                
+                for road in city.outRoads {
+                    
+                    if !info.cities[road.b].isRemoved {
+                        if !set.contains(road.mask) {
+                            set.insert(road.mask)
+                            roads.append(road)
+                        }
+                    }
+                }
+
             }
             dots.append(DotView.Data(index: city.index, point: point, name: city.description, color: color))
-            
-            for road in city.roads {
-                let pair = RoadPair(road: road)
-                if !set.contains(pair) {
-                    set.insert(pair)
-                    roads.append(road)
-                }
-            }
         }
 
         var bows = [BowView.Data]()
@@ -62,7 +65,7 @@ final class GraphReformationLogic: ObservableObject, Stage {
             let description: String?
             if road.path.count > 2 {
                 isDirect = false
-                description = road.path[1..<road.path.count - 1].map({ String($0) }).joined(separator: "-")
+                description = road.description
             } else {
                 isDirect = true
                 description = nil
@@ -158,28 +161,4 @@ final class GraphReformationLogic: ObservableObject, Stage {
         return nil
     }
     
-}
-
-struct RoadPair: Hashable {
-    
-    let index: Int
-    
-    init(road: Road) {
-        let a = road.path.first!
-        let b = road.path.last!
-        
-        if a > b {
-            index = (Int(a) << 8) + Int(b)
-        } else {
-            index = (Int(b) << 8) + Int(a)
-        }
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(index)
-    }
-    
-    static func == (lhs: RoadPair, rhs: RoadPair) -> Bool {
-        lhs.index == rhs.index
-    }
 }

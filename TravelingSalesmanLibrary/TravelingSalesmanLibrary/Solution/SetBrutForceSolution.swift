@@ -41,8 +41,8 @@ struct SetBrutForceSolution {
 //        debugPrint(emptySet)
         
         let hordes = edgeMatrix.impossibleHordes()
-        print("all: \(emptySet.count)")
-        print("hordes: \(hordes.count)")
+        debugPrint("all: \(emptySet.count)")
+        debugPrint("hordes: \(hordes.count)")
         emptySet.remove(edges: hordes)
 //        debugPrint(emptySet)
         

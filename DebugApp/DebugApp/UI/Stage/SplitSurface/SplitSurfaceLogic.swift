@@ -20,6 +20,7 @@ final class SplitSurfaceLogic: ObservableObject, Stage {
         let dots: [DotView.Data]
         let hordes: [EdgeView.Data]
         let steps: [EdgeView.Data]
+        let circle: [CGPoint]
     }
     
     @Published var points: [CGPoint] = []
@@ -53,8 +54,13 @@ final class SplitSurfaceLogic: ObservableObject, Stage {
             steps.append(EdgeView.Data(index: i, points: [a, b]))
             i += 1
         }
+        
+        var circle = [CGPoint]()
+        for i in info.path {
+            circle.append(points[i])
+        }
 
-        return ViewModel(dots: dots, hordes: hordes, steps: steps)
+        return ViewModel(dots: dots, hordes: hordes, steps: steps, circle: circle)
     }
     
     init(data: [SplitSurfaceData.Data]) {

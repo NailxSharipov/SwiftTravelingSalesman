@@ -6,14 +6,17 @@
 //
 
 public final class City {
-    
+
     public let index: Int
-    public let roads = [Road]()
-    var isRemoved: Bool = false
-    let neighbours: FixSizeSet
+    public internal (set) var outRoads: [Road]
+    public internal (set) var inRoads: [Road]
+    var isOutDirty = false
+    var isInDirty = false
+    public var isRemoved = false
     
-    init(index: Int, size: Int) {
+    init(index: Int, outRoads: [Road], inRoads: [Road]) {
         self.index = index
-        self.neighbours = FixSizeSet(size: size)
+        self.outRoads = outRoads
+        self.inRoads = inRoads
     }
 }
