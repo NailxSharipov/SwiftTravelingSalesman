@@ -24,8 +24,6 @@ public struct BruteForceCutSolution {
     private var m0: Int = 0
     private var m1: Int = 0
     private var m2: Int = 0
-    private var m3: Int = 0
-    private var m4: Int = 0
 
     public static func minPath(matrix: AdMatrix) -> [Int] {
         var solution = BruteForceCutSolution(matrix: matrix)
@@ -46,11 +44,17 @@ public struct BruteForceCutSolution {
             return Array(0..<n)
         }
         let a = 0
+        
+        let capacity = n > 15 ? 2^13 : 2^(n - 2)
+        
+        cache.reserveCapacity(capacity)
         pathMask = pathMask.setBit(index: a)
         rest[a] = false
         path[pathCount] = a
         pathCount = 1
         next()
+        
+        debugPrint("m0: \(m0), m1: \(m1), m2: \(m2)")
         
         return best
     }
@@ -74,7 +78,6 @@ public struct BruteForceCutSolution {
         }
 
         guard minLen > length else {
-            m4 += 1
             return
         }
 
@@ -87,6 +90,7 @@ public struct BruteForceCutSolution {
                 let factor = newBMtx.connectivityFactor(start: c, visited: pathMask)
                 let validFactor = n - pathCount
                 if factor != validFactor {
+                    m1 += 1
                     return
                 }
 
@@ -109,6 +113,7 @@ public struct BruteForceCutSolution {
                         let currentLen = matrix[a0, subPath.start] + matrix[subPath.end, c] + subPath.length
                         
                         if cacheLen < currentLen {
+                            m2 += 1
                             return
                         }
                     } else {
