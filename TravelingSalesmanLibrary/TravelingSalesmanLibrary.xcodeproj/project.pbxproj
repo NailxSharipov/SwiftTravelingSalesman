@@ -29,8 +29,7 @@
 		546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */; };
 		546CAB35262B48F400B86C12 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB34262B48F400B86C12 /* City.swift */; };
 		546CAB39262B491B00B86C12 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB38262B491B00B86C12 /* Road.swift */; };
-		54A1F420262C8CF20098635F /* FixSizeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F41F262C8CF20098635F /* FixSizeSet.swift */; };
-		54A1F425262C8DD60098635F /* FixSizeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F424262C8DD60098635F /* FixSizeArray.swift */; };
+		547E9AAA263EC87800F30582 /* StaticArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E9AA9263EC87800F30582 /* StaticArray.swift */; };
 		54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */; };
 		54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F494262E9E4A0098635F /* BitMatrix.swift */; };
 		54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F498262EA24A0098635F /* LinkBitMatrix.swift */; };
@@ -75,8 +74,7 @@
 		546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationSolution.swift; sourceTree = "<group>"; };
 		546CAB34262B48F400B86C12 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		546CAB38262B491B00B86C12 /* Road.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
-		54A1F41F262C8CF20098635F /* FixSizeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixSizeSet.swift; sourceTree = "<group>"; };
-		54A1F424262C8DD60098635F /* FixSizeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixSizeArray.swift; sourceTree = "<group>"; };
+		547E9AA9263EC87800F30582 /* StaticArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticArray.swift; sourceTree = "<group>"; };
 		54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Bit.swift"; sourceTree = "<group>"; };
 		54A1F494262E9E4A0098635F /* BitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMatrix.swift; sourceTree = "<group>"; };
 		54A1F498262EA24A0098635F /* LinkBitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBitMatrix.swift; sourceTree = "<group>"; };
@@ -206,8 +204,7 @@
 		54A1F423262C8DC10098635F /* FixSize */ = {
 			isa = PBXGroup;
 			children = (
-				54A1F41F262C8CF20098635F /* FixSizeSet.swift */,
-				54A1F424262C8DD60098635F /* FixSizeArray.swift */,
+				547E9AA9263EC87800F30582 /* StaticArray.swift */,
 			);
 			path = FixSize;
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 			files = (
 				54368F1926284D8E00F9DAF1 /* StaticList.swift in Sources */,
 				54368F1C26284D8E00F9DAF1 /* EdgeMatrix.swift in Sources */,
-				54A1F425262C8DD60098635F /* FixSizeArray.swift in Sources */,
 				54368F1226284D8E00F9DAF1 /* SetBrutForceSolution.swift in Sources */,
 				546CAB39262B491B00B86C12 /* Road.swift in Sources */,
 				54368F1526284D8E00F9DAF1 /* OpenLinkedList.swift in Sources */,
@@ -346,12 +342,12 @@
 				546CAB35262B48F400B86C12 /* City.swift in Sources */,
 				54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */,
 				54368F372628556700F9DAF1 /* SurfaceSplitSolution.swift in Sources */,
+				547E9AAA263EC87800F30582 /* StaticArray.swift in Sources */,
 				54368F1A26284D8E00F9DAF1 /* EdgeSet.swift in Sources */,
 				54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */,
 				54368F1826284D8E00F9DAF1 /* EdgeSet+Availability.swift in Sources */,
 				54CC41B926387379004AD77C /* SubSetId.swift in Sources */,
 				54CC41B726384AC1004AD77C /* BruteForceCutSolution.swift in Sources */,
-				54A1F420262C8CF20098635F /* FixSizeSet.swift in Sources */,
 				54368F1626284D8E00F9DAF1 /* ArraySet.swift in Sources */,
 				54BECD0D2634300C003CB241 /* Path64.swift in Sources */,
 				54368F1326284D8E00F9DAF1 /* PowerIndex.swift in Sources */,

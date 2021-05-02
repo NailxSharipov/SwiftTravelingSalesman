@@ -20,6 +20,12 @@ struct SplitSurfaceData {
     }
 
     static let data: [Data] = [
+        Data([
+            CGPoint(x: -15, y:  10),
+            CGPoint(x:  -5, y:  -5),
+            CGPoint(x:   5, y:   5),
+            CGPoint(x:  15, y: -10)
+        ]),
         Data(Self.circles(n: 8, radiuses: [10])),
         Data([
             CGPoint(x: -25, y:   0),

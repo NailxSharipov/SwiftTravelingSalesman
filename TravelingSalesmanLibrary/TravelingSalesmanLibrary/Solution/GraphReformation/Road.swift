@@ -9,27 +9,23 @@ public struct RoadMask: Hashable {
     
     let a: Int
     let b: Int
-    let bitMask: UInt64
+    let subMask: UInt64
     
     @inline(__always)
     init(path: [Int]) {
         let n = path.count
-        if n > 2 {
-            var m: UInt64 = 0
-            for i in 1..<n - 1 {
-                let j = path[i]
-                m = m | (1 << j)
-            }
-            self.bitMask = m
-        } else {
-            self.bitMask = 0
+        var m: UInt64 = 0
+        for i in 0..<n {
+            let j = path[i]
+            m = m | (1 << j)
         }
         self.a = path[0]
         self.b = path[n - 1]
+        self.subMask = m.clearBit(index: a).clearBit(index: b)
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(bitMask)
+        hasher.combine(subMask)
     }
 
 }
@@ -44,12 +40,12 @@ public final class Road {
     
     @inline(__always)
     public var a: Int {
-        Int(path[0])
+        mask.a
     }
     
     @inline(__always)
     public var b: Int {
-        Int(path[path.count - 1])
+        mask.b
     }
     
     @inline(__always)
@@ -67,23 +63,14 @@ public final class Road {
     }
     
     convenience init?(inRoad: Road, outRoad: Road) {
-        let aMask = inRoad.mask
-        let bMask = outRoad.mask
-        guard aMask.bitMask & bMask.bitMask == 0, !(aMask.a == bMask.b && aMask.b == bMask.a)  else {
+        let inMask = inRoad.mask
+        let outMask = outRoad.mask
+        guard inMask.subMask & outMask.subMask == 0, !(inMask.a == outMask.b && inMask.b == outMask.a) else {
             return nil
         }
         
-//        debugPrint("inRoad:")
-//        debugPrint(inRoad.movement)
-//
-//        debugPrint("outRoad:")
-//        debugPrint(outRoad.movement)
-        
-        let set = inRoad.movement.intersect(map: outRoad.movement)
-        
-//        debugPrint("result:")
-//        debugPrint(set)
-        
+        let newBMtx = inRoad.movement.intersect(map: outRoad.movement)
+
         let n = inRoad.path.count + outRoad.path.count - 1
 
         let length = inRoad.length &+ outRoad.length
@@ -98,20 +85,17 @@ public final class Road {
             path[j] = outRoad.path[i]
             j &+= 1
         }
-        
-        let size = set.array.count
-        
-        let c = set[bMask.b].firstBitNotEmpty(size: size)
-        guard c != -1 else { return nil }
-        
+
         let visited = UInt64(mask: path)
-        let mask = set[c]
         
-        let isNotHorde = set.testConnectivity(mask: mask, visited: visited, count: size - n + 1)
+        let factor = newBMtx.connectivityFactor(start: outMask.b, visited: visited)
+        let size = newBMtx.array.count
+        let validFactor = size - n
+        let isNotHorde = factor == validFactor
 
         guard isNotHorde else { return nil }
 
-        self.init(length: length, path: path, movement: set)
+        self.init(length: length, path: path, movement: newBMtx)
     }
     
 }

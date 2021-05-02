@@ -25,6 +25,12 @@ struct RoadSolverData {
             CGPoint(x: -15, y: -15)
         ]),
         Data([
+            CGPoint(x: -15, y:  10),
+            CGPoint(x:  -5, y:  -5),
+            CGPoint(x:   5, y:   5),
+            CGPoint(x:  15, y: -10)
+        ]),
+        Data([
             CGPoint(x: -20, y:  -5),
             CGPoint(x: -10, y:   5),
             CGPoint(x:  1.5, y: -1.5),
@@ -70,9 +76,11 @@ struct RoadSolverData {
             CGPoint(x:  20, y:  15),
             CGPoint(x:  30, y:   0)
         ]),
-        Data(Self.circles(n: 3, radiuses: [5, 10]))
-//        Data(Self.circles(n: 3, radiuses: [5, 10, 20])),
-//        Data(Self.circles(n: 5, radiuses: [5, 10, 20]))
+        Data(Self.circles(n: 3, radiuses: [5, 10])),
+        Data(Self.circles(n: 16, radiuses: [25])),
+        Data(Self.circles(n: 24, radiuses: [25])),
+        Data(Self.circles(n: 3, radiuses: [5, 10, 20])),
+        Data(Self.circles(n: 5, radiuses: [5, 10, 20]))
     ]
 
 

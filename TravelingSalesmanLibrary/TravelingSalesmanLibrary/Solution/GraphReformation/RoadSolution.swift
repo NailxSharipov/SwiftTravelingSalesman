@@ -120,7 +120,7 @@ public struct RoadSolution {
                 let baMask = ba.mask
                 let pathCount = ab.path.count + ba.path.count - 2
                 let pathLength = ab.length + ba.length
-                let pathMask = abMask.bitMask | baMask.bitMask
+                let pathMask = abMask.subMask | baMask.subMask
                 if pathMask == allMask && pathCount == count && pathLength < minLength {
                     minLength = pathLength
 
