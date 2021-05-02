@@ -212,10 +212,10 @@ struct BitMatrix {
         return j == count
     }
     
+    @inline(__always)
     func connectivityFactor(start: Int, visited: UInt64) -> Int {
-        let n = array.count
 
-        let first = self[start].firstBitNotInMask(mask: visited, size: n)
+        let first = self[start].firstBitNotInMask(mask: visited)
         guard first != -1 else { return 0 }
 
         var visited = visited.setBit(index: first)
@@ -224,6 +224,8 @@ struct BitMatrix {
 
         var j = 1
         var nextMask: UInt64 = 0
+        
+        let n = array.count
         
         repeat {
             for i in 0..<n {
@@ -241,12 +243,22 @@ struct BitMatrix {
         return j
     }
     
+    @inline(__always)
     func isClosed(index: Int, a: Int, b: Int) -> Bool {
         var mask = self[index]
         mask = mask.clearBit(index: a).clearBit(index: b)
         return mask == 0
     }
 
+    @inline(__always)
+    func isConnected(index: Int) -> Bool {
+        let n = array.count
+        for i in 0..<n where array[i].isBit(index: index) {
+            return true
+        }
+        return false
+    }
+    
 }
 
 extension BitMatrix: CustomStringConvertible {

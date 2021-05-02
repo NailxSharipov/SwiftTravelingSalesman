@@ -17,23 +17,30 @@ extension UInt64 {
     
     @inline(__always)
     func firstBitNotEmpty(size: Int = UInt64.bitWidth) -> Int {
-        for i in 0..<size {
-            if self.isBit(index: i) {
+        var a = self
+        var i = -1
+        while a != 0 {
+            i &+= 1
+            if a & 1 == 1 {
                 return i
             }
+            a = a >> 1
         }
-        return -1
+        return i
     }
     
     @inline(__always)
-    func firstBitNotInMask(mask: UInt64, size: Int = UInt64.bitWidth) -> Int {
-        for i in 0..<size {
-            let bit: UInt64 = (1 << i)
-            if (bit & self == bit) && (bit & mask != bit) {
+    func firstBitNotInMask(mask: UInt64) -> Int {
+        var a = (self ^ mask) & self
+        var i = -1
+        while a != 0 {
+            i &+= 1
+            if a & 1 == 1 {
                 return i
             }
+            a = a >> 1
         }
-        return -1
+        return i
     }
     
     @inline(__always)

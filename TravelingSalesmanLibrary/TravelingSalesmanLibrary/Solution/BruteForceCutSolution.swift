@@ -24,6 +24,7 @@ public struct BruteForceCutSolution {
     private var m0: Int = 0
     private var m1: Int = 0
     private var m2: Int = 0
+    private var m3: Int = 0
 
     public static func minPath(matrix: AdMatrix) -> [Int] {
         var solution = BruteForceCutSolution(matrix: matrix)
@@ -54,7 +55,7 @@ public struct BruteForceCutSolution {
         pathCount = 1
         next()
         
-        debugPrint("m0: \(m0), m1: \(m1), m2: \(m2)")
+        debugPrint("m0: \(m0), m1: \(m1), m2: \(m2), m3: \(m3)")
         
         return best
     }
@@ -86,6 +87,11 @@ public struct BruteForceCutSolution {
             let b = path[index - 1]
             if let bcBMtx = linkMatrix[b, c] {
                 let newBMtx = pathBMtx.intersect(map: bcBMtx)
+                
+                guard newBMtx.isConnected(index: 0) else {
+                    m3 += 1
+                    return
+                }
 
                 let factor = newBMtx.connectivityFactor(start: c, visited: pathMask)
                 let validFactor = n - pathCount
@@ -132,8 +138,7 @@ public struct BruteForceCutSolution {
         
         while d != -1 {
             let iNode = rest.remove(index: d)
-
-               pathMask = pathMask.setBit(index: d)
+            pathMask = pathMask.setBit(index: d)
             let cd = matrix[c, d]
             path[pathCount] = d
             pathCount += 1
