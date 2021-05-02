@@ -16,7 +16,7 @@ struct BitMatrix {
     
     /// 1 - has a connection
     /// 0 - no connection
-    fileprivate (set) var array: [UInt64]
+    fileprivate let array: UnsafeMutablePointer<UInt64>
     
     @inline(__always)
     subscript(i: Int, j: Int) -> Bool {
@@ -42,47 +42,58 @@ struct BitMatrix {
         }
     }
     
+    let count: Int
+    
     init(size: Int, fill: Fill = .empty) {
+        count = size
+        array = UnsafeMutablePointer<UInt64>.allocate(capacity: size)
         switch fill {
         case .empty:
-            array = [UInt64](repeating: 0, count: size)
+            for i in 0..<size {
+                array[i] = 0
+            }
         case .full:
             let template: UInt64 = (1 << size) &- 1
-            array = [UInt64](repeating: template, count: size)
-        case .identity:
-            array = [UInt64](repeating: 0, count: size)
             for i in 0..<size {
+                array[i] = template
+            }
+        case .identity:
+            for i in 0..<size {
+                array[i] = 0
                 self[i, i] = true
             }
         case .reverseIdentity:
             let template: UInt64 = (1 << size) &- 1
-            array = [UInt64](repeating: template, count: size)
             for i in 0..<size {
+                array[i] = template
                 self[i, i] = false
             }
         }
     }
     
-    init(array: [UInt64]) {
+    init(array: UnsafeMutablePointer<UInt64>, size: Int) {
+        self.count = size
         self.array = array
+    }
+    
+    func deallocate() {
+        self.array.deallocate()
     }
     
     @inline(__always)
     func union(map: BitMatrix) -> BitMatrix {
-        let n = array.count
-        var buffer = [UInt64](repeating: 0, count: n)
+        let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
         
-        for i in 0..<n {
+        for i in 0..<count {
             buffer[i] = array[i] | map.array[i]
         }
         
-        return BitMatrix(array: buffer)
+        return BitMatrix(array: buffer, size: count)
     }
     
     @inline(__always)
     mutating func formUnion(map: BitMatrix) {
-        let n = array.count
-        for i in 0..<n {
+        for i in 0..<count {
             array[i] = array[i] | map.array[i]
         }
     }
@@ -90,106 +101,58 @@ struct BitMatrix {
     
     @inline(__always)
     func intersect(map: BitMatrix) -> BitMatrix {
-        let n = array.count
-        var buffer = [UInt64](repeating: 0, count: n)
+        let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
         
-        for i in 0..<n {
+        for i in 0..<count {
             buffer[i] = array[i] & map.array[i]
         }
         
-        return BitMatrix(array: buffer)
+        return BitMatrix(array: buffer, size: count)
     }
     
     @inline(__always)
     mutating func formIntersect(map: BitMatrix) {
-        let n = array.count
-        for i in 0..<n {
+        for i in 0..<count {
             array[i] = array[i] & map.array[i]
         }
     }
     
     @inline(__always)
     func subtract(map: BitMatrix) -> BitMatrix {
-        let n = array.count
-        var buffer = [UInt64](repeating: 0, count: n)
-        for i in 0..<n {
+        let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
+        for i in 0..<count {
             buffer[i] = array[i].subtract(word: map.array[i])
         }
         
-        return BitMatrix(array: buffer)
+        return BitMatrix(array: buffer, size: count)
     }
     
     @inline(__always)
     mutating func formSubtract(map: BitMatrix) {
-        let n = array.count
-        for i in 0..<n {
+        for i in 0..<count {
             array[i] = array[i].subtract(word: map.array[i])
         }
     }
     
     @inline(__always)
     func invert() -> BitMatrix {
-        let n = array.count
-        var buffer = [UInt64](repeating: 0, count: n)
-        for i in 0..<n {
+        let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
+        for i in 0..<count {
             buffer[i] = ~array[i]
         }
         
-        return BitMatrix(array: buffer)
+        return BitMatrix(array: buffer, size: count)
     }
     
     @inline(__always)
     mutating func formInvert() {
-        let n = array.count
-        for i in 0..<n {
+        for i in 0..<count {
             array[i] = ~array[i]
         }
     }
-
-    func testConnectivity(count: Int) -> Bool {
-        let n = array.count
-        var mask: UInt64 = 0
-        var visited: UInt64 = 0
-        var target: UInt64 = 0
-        var first = 0
-        for i in 0..<n {
-            let word = array[i]
-            target = target | word
-            if word > 0 && mask == 0 {
-                mask = word
-                visited = visited.setBit(index: i)
-                first = i
-            }
-        }
-
-        guard mask != 0 && target.isBit(index: first) else {
-            return false
-        }
-        
-        var j = 1
-        var nextMask: UInt64 = 0
-        
-        repeat {
-            var i = 0
-            while mask > 0 {
-                if 1 & mask == 1 {
-                    visited = visited.setBit(index: i)
-                    let word = array[i]
-                    nextMask = nextMask | word
-                    j += 1
-                }
-                mask = mask >> 1
-                i += 1
-            }
-            mask = nextMask.subtract(word: visited)
-            nextMask = 0
-        } while mask != 0
-
-        return j == count
-    }
     
     func testConnectivity(mask: UInt64, visited: UInt64, count: Int) -> Bool {
-        let n = array.count
+        let n = self.count
         var mask = mask
         var visited = visited
         
@@ -214,30 +177,28 @@ struct BitMatrix {
     
     @inline(__always)
     func connectivityFactor(start: Int, visited: UInt64) -> Int {
-
         let first = self[start].firstBitNotInMask(mask: visited)
-        guard first != -1 else { return 0 }
+        assert(first != -1)
 
         var visited = visited.setBit(index: first)
-        
-        var mask = self[first].subtract(word: visited) // TODD may be not needed
+        var mask = self[first].subtract(word: visited)
 
         var j = 1
-        var nextMask: UInt64 = 0
-        
-        let n = array.count
-        
         repeat {
-            for i in 0..<n {
-                if mask.isBit(index: i) {
+            var a = mask
+            var i = 0
+            var nextMask: UInt64 = 0
+            while a > 0 {
+                let isBit = a & 1 == 1
+                if isBit {
                     visited = visited.setBit(index: i)
-                    let word = array[i]
-                    nextMask = nextMask | word
-                    j += 1
+                    nextMask = nextMask | array[i]
+                    j &+= 1
                 }
+                i &+= 1
+                a = a >> 1
             }
             mask = nextMask.subtract(word: visited)
-            nextMask = 0
         } while mask != 0
 
         return j
@@ -252,8 +213,7 @@ struct BitMatrix {
 
     @inline(__always)
     func isConnected(index: Int) -> Bool {
-        let n = array.count
-        for i in 0..<n where array[i].isBit(index: index) {
+        for i in 0..<count where array[i].isBit(index: index) {
             return true
         }
         return false
@@ -265,7 +225,7 @@ extension BitMatrix: CustomStringConvertible {
     
     var description: String {
         var result = String()
-        let last = array.count - 1
+        let last = count - 1
         
         
         result.append("\r\n")
@@ -276,7 +236,8 @@ extension BitMatrix: CustomStringConvertible {
         result.append("\r\n")
         
         var i = 0
-        for a in array {
+        for j in 0..<count {
+            let a = array[j]
             if i < 16 {
                 result.append(String(format:" %X:", i))
             } else {

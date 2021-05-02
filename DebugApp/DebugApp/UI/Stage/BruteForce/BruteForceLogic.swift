@@ -19,7 +19,7 @@ final class BruteForceLogic: ObservableObject, Stage {
     var minPath: [CGPoint] {
         let matrix = AdMatrix(nodes: self.points)
 
-        let indices = BruteForceCutSolution.minPath(matrix: matrix)
+        let indices = BruteForceSolution.minPath(matrix: matrix)
         var result = [CGPoint]()
         result.reserveCapacity(indices.count)
         for i in indices {

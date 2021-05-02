@@ -2,155 +2,173 @@
 //  BruteForceSolution.swift
 //  TravelingSalesmanLibrary
 //
-//  Created by Nail Sharipov on 15.04.2021.
+//  Created by Nail Sharipov on 27.04.2021.
 //
 
 public struct BruteForceSolution {
 
     private let matrix: AdMatrix
     private var minLen: Int = .max
-    private var set0: OpenLinkedList
-    private var set1: Set<Int>
-    private var best: [Int] = []
-    private var path: [Int] = []
+    private let linkMatrix: LinkBitMatrix
+    
+    private var cache = [UInt64: SubPath]()
+    
+    private var pathMask: UInt64 = 0
+    private var pathBMtx: BitMatrix
+    private var rest: OpenLinkedList
+    private var best: [Int]
+    private var path: FixArray
     private var length = 0
     
     private var m0: Int = 0
     private var m1: Int = 0
     private var m2: Int = 0
     private var m3: Int = 0
-    private var m4: Int = 0
 
     public static func minPath(matrix: AdMatrix) -> [Int] {
         var solution = BruteForceSolution(matrix: matrix)
-        return solution.solve()
+        let result = solution.solve()
+        solution.dealocate()
+        return result
     }
     
     private init(matrix: AdMatrix) {
         self.matrix = matrix
-        self.set0 = OpenLinkedList(count: matrix.size, isEmpty: false)
-        self.set1 = Set<Int>(set0.path)
+        self.linkMatrix = LinkBitMatrix(matrix: matrix)
+        self.path = FixArray(capacity: matrix.size)
+        self.best = [Int](repeating: 0, count: matrix.size)
+        self.pathBMtx = self.linkMatrix.base
+        self.rest = OpenLinkedList(count: matrix.size, isEmpty: false)
     }
     
-    mutating func solve() -> [Int] {
+    private mutating func solve() -> [Int] {
         let n = matrix.size
         guard n > 3 else {
             return Array(0..<n)
         }
-        path.reserveCapacity(n)
         let a = 0
-        set0[a] = false
-        set1.remove(a)
+        
+        let capacity = n > 15 ? 2^13 : 2^(n - 2)
+        
+        cache.reserveCapacity(capacity)
+        pathMask = pathMask.setBit(index: a)
+        rest[a] = false
         path.append(a)
-        next()
+        _ = next()
+        
+        debugPrint("m0: \(m0), m1: \(m1), m2: \(m2), m3: \(m3)")
         
         return best
     }
     
-    mutating func next() {
+    mutating func next() -> Bool {
         let n = matrix.size
         let index = path.count - 1
         m0 += 1
         
+        let a = path[0]
+        let c = path[index]
+        
         guard path.count < n else {
-            let last = matrix[path[index], path[0]]
+            let last = matrix[c, a]
             let result = length + last
             if minLen > result {
-                best = path
+                path.fill(buffer: &best)
                 minLen = result
             }
-            return
+            return false
         }
-        
+
         guard minLen > length else {
-            m4 += 1
-            return
+            return false
         }
-        
 
-        let d = path[index]
-        
-        if path.count > 3 {
-            let cIndex = index - 1
-            let eIndex = index - 2
-            
-            let e = path[eIndex]
-            let c = path[cIndex]
-            let cd = matrix[c, d]
-            let ecd = matrix[c, e] + matrix[c, d] - matrix[e, d]
-
-            var a = path[0]
-            for i in 1..<cIndex {
-                let b = path[i]
-
-                let ab = matrix[a, b]
-                let ac = matrix[a, c]
+        if index >= 1 {
+            // test connectivity
+            let b = path[index - 1]
+            if let bcBMtx = linkMatrix[b, c] {
+                let newBMtx = pathBMtx.intersect(map: bcBMtx)
                 
-                // remove unoptimal more optimal
-                let acb = ac + matrix[b, c] - ab
-                if acb < ecd {
+                guard newBMtx.isConnected(index: 0) else {
+                    m3 += 1
+                    newBMtx.deallocate()
+                    return false
+                }
+
+                let factor = newBMtx.connectivityFactor(start: c, visited: pathMask)
+                let validFactor = n - path.count
+                guard factor == validFactor else {
                     m1 += 1
-                    return
+                    newBMtx.deallocate()
+                    return false
                 }
 
-                let bd = matrix[b, d]
-
-                // remove self intersections
-                if ab + cd > ac + bd {
-                    m2 += 1
-                    return
-                }
+//                self.pathBMtx.deallocate()
                 
-                a = b
-            }
-        }
-        
-        let newSet: Set<Int>
-        if index > 1 {
-            newSet = Self.fillBackPathExist(a: path[0], c: path[index - 1], d: path[index], set: set1, matrix: matrix)
-            if newSet.count == set1.count {
-                m3 += 1
-                return
+                self.pathBMtx = newBMtx
             } else {
-                set1.subtract(newSet) // intersect!
+                return false
             }
-        } else {
-            newSet = Set<Int>()
+            
+            // test cache
+
+            var j = path.count - 3
+            let end = j < 10 ? 0 : j - 10
+            while j > end {
+                let result = path.subSet(start: j, end: index - 1, matrix: matrix)
+                let subPathMask = result.0
+                let subPath = result.1
+                if let cacheSubPath = cache[subPathMask] {
+                    if cacheSubPath.length < subPath.length {
+                        let a0 = path[j]
+                        let cacheLen = matrix[a0, cacheSubPath.start] + matrix[cacheSubPath.end, c] + cacheSubPath.length
+                        let currentLen = matrix[a0, subPath.start] + matrix[subPath.end, c] + subPath.length
+
+                        guard cacheLen >= currentLen else {
+                            m2 += 1
+                            return true
+                        }
+                    } else {
+                        cache[subPathMask] = subPath
+                    }
+                } else {
+                    cache[subPathMask] = subPath
+                }
+                j -= 1
+            }
         }
         
-        var i = set0.first
+        var d = rest.first
         
-        while i != -1 {
-            let i0Node = set0.remove(index: i)
-            set1.remove(i)
-            let de = matrix[d, i]
-            path.append(i)
-            length += de
-            next()
-            length -= de
+        let copyBMtx = pathBMtx
+        
+        while d != -1 {
+            let iNode = rest.remove(index: d)
+            pathMask = pathMask.setBit(index: d)
+            let cd = matrix[c, d]
+            path.append(d)
+            length += cd
+
+            if next() {
+                pathBMtx.deallocate()
+            }
+
+            length -= cd
             path.removeLast()
-            set0.add(node: i0Node)
+            rest.add(node: iNode)
+            pathMask = pathMask.clearBit(index: d)
+
+            pathBMtx = copyBMtx
             
-            set1.insert(i)
-            
-            i = i0Node.next
+            d = iNode.next
         }
 
-        if !newSet.isEmpty {
-            set1.formUnion(newSet)
-        }
-        
-        return
+        return true
     }
     
-    private static func fillBackPathExist(a: Int, c: Int, d: Int, set: Set<Int>, matrix: AdMatrix) -> Set<Int> {
-        var unreturnable = Set<Int>()
-        for i in set {
-            if matrix.isNotPossibleCase(a: i, b: a, c: c, d: d) {
-                unreturnable.insert(i)
-            }
-        }
-        
-        return unreturnable
+    private func dealocate() {
+        self.linkMatrix.dealocate()
+        self.path.dealocate()
+//        self.pathBMtx.deallocate()
     }
 }

@@ -89,7 +89,7 @@ public final class Road {
         let visited = UInt64(mask: path)
         
         let factor = newBMtx.connectivityFactor(start: outMask.b, visited: visited)
-        let size = newBMtx.array.count
+        let size = newBMtx.count
         let validFactor = size - n
         let isNotHorde = factor == validFactor
 

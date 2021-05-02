@@ -10,7 +10,6 @@
 		54368EED26284B8200F9DAF1 /* TravelingSalesmanLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54368EE326284B8200F9DAF1 /* TravelingSalesmanLibrary.framework */; };
 		54368EF226284B8200F9DAF1 /* TravelingSalesmanLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368EF126284B8200F9DAF1 /* TravelingSalesmanLibraryTests.swift */; };
 		54368EF426284B8200F9DAF1 /* TravelingSalesmanLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 54368EE626284B8200F9DAF1 /* TravelingSalesmanLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		54368F1126284D8E00F9DAF1 /* BruteForceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F0026284D8E00F9DAF1 /* BruteForceSolution.swift */; };
 		54368F1226284D8E00F9DAF1 /* SetBrutForceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F0126284D8E00F9DAF1 /* SetBrutForceSolution.swift */; };
 		54368F1326284D8E00F9DAF1 /* PowerIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F0326284D8E00F9DAF1 /* PowerIndex.swift */; };
 		54368F1426284D8E00F9DAF1 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368F0426284D8E00F9DAF1 /* Edge.swift */; };
@@ -29,12 +28,12 @@
 		546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */; };
 		546CAB35262B48F400B86C12 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB34262B48F400B86C12 /* City.swift */; };
 		546CAB39262B491B00B86C12 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB38262B491B00B86C12 /* Road.swift */; };
-		547E9AAA263EC87800F30582 /* StaticArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E9AA9263EC87800F30582 /* StaticArray.swift */; };
+		547E9AC1263EE1C000F30582 /* FixArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E9AC0263EE1C000F30582 /* FixArray.swift */; };
 		54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */; };
 		54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F494262E9E4A0098635F /* BitMatrix.swift */; };
 		54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F498262EA24A0098635F /* LinkBitMatrix.swift */; };
 		54BECD0D2634300C003CB241 /* Path64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BECD0C2634300C003CB241 /* Path64.swift */; };
-		54CC41B726384AC1004AD77C /* BruteForceCutSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC41B626384AC1004AD77C /* BruteForceCutSolution.swift */; };
+		54CC41B726384AC1004AD77C /* BruteForceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC41B626384AC1004AD77C /* BruteForceSolution.swift */; };
 		54CC41B926387379004AD77C /* SubSetId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC41B826387379004AD77C /* SubSetId.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +54,6 @@
 		54368EEC26284B8200F9DAF1 /* TravelingSalesmanLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelingSalesmanLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54368EF126284B8200F9DAF1 /* TravelingSalesmanLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelingSalesmanLibraryTests.swift; sourceTree = "<group>"; };
 		54368EF326284B8200F9DAF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		54368F0026284D8E00F9DAF1 /* BruteForceSolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BruteForceSolution.swift; sourceTree = "<group>"; };
 		54368F0126284D8E00F9DAF1 /* SetBrutForceSolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetBrutForceSolution.swift; sourceTree = "<group>"; };
 		54368F0326284D8E00F9DAF1 /* PowerIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerIndex.swift; sourceTree = "<group>"; };
 		54368F0426284D8E00F9DAF1 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
@@ -74,12 +72,12 @@
 		546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphReformationSolution.swift; sourceTree = "<group>"; };
 		546CAB34262B48F400B86C12 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		546CAB38262B491B00B86C12 /* Road.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
-		547E9AA9263EC87800F30582 /* StaticArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticArray.swift; sourceTree = "<group>"; };
+		547E9AC0263EE1C000F30582 /* FixArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixArray.swift; sourceTree = "<group>"; };
 		54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Bit.swift"; sourceTree = "<group>"; };
 		54A1F494262E9E4A0098635F /* BitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMatrix.swift; sourceTree = "<group>"; };
 		54A1F498262EA24A0098635F /* LinkBitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBitMatrix.swift; sourceTree = "<group>"; };
 		54BECD0C2634300C003CB241 /* Path64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path64.swift; sourceTree = "<group>"; };
-		54CC41B626384AC1004AD77C /* BruteForceCutSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceCutSolution.swift; sourceTree = "<group>"; };
+		54CC41B626384AC1004AD77C /* BruteForceSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceSolution.swift; sourceTree = "<group>"; };
 		54CC41B826387379004AD77C /* SubSetId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSetId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,10 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				546CAB2D262B3E0800B86C12 /* GraphReformation */,
-				54368F0026284D8E00F9DAF1 /* BruteForceSolution.swift */,
 				54368F0126284D8E00F9DAF1 /* SetBrutForceSolution.swift */,
 				54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */,
-				54CC41B626384AC1004AD77C /* BruteForceCutSolution.swift */,
+				54CC41B626384AC1004AD77C /* BruteForceSolution.swift */,
 			);
 			path = Solution;
 			sourceTree = "<group>";
@@ -204,7 +201,7 @@
 		54A1F423262C8DC10098635F /* FixSize */ = {
 			isa = PBXGroup;
 			children = (
-				547E9AA9263EC87800F30582 /* StaticArray.swift */,
+				547E9AC0263EE1C000F30582 /* FixArray.swift */,
 			);
 			path = FixSize;
 			sourceTree = "<group>";
@@ -336,19 +333,18 @@
 				54368F1B26284D8E00F9DAF1 /* ClosedLinkedList.swift in Sources */,
 				54368F1D26284D8E00F9DAF1 /* AdMatrix.swift in Sources */,
 				54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */,
-				54368F1126284D8E00F9DAF1 /* BruteForceSolution.swift in Sources */,
 				54368F1426284D8E00F9DAF1 /* Edge.swift in Sources */,
 				54368F1E26284D8E00F9DAF1 /* EdgeMatrix+Impossible.swift in Sources */,
 				546CAB35262B48F400B86C12 /* City.swift in Sources */,
 				54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */,
 				54368F372628556700F9DAF1 /* SurfaceSplitSolution.swift in Sources */,
-				547E9AAA263EC87800F30582 /* StaticArray.swift in Sources */,
 				54368F1A26284D8E00F9DAF1 /* EdgeSet.swift in Sources */,
 				54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */,
 				54368F1826284D8E00F9DAF1 /* EdgeSet+Availability.swift in Sources */,
 				54CC41B926387379004AD77C /* SubSetId.swift in Sources */,
-				54CC41B726384AC1004AD77C /* BruteForceCutSolution.swift in Sources */,
+				54CC41B726384AC1004AD77C /* BruteForceSolution.swift in Sources */,
 				54368F1626284D8E00F9DAF1 /* ArraySet.swift in Sources */,
+				547E9AC1263EE1C000F30582 /* FixArray.swift in Sources */,
 				54BECD0D2634300C003CB241 /* Path64.swift in Sources */,
 				54368F1326284D8E00F9DAF1 /* PowerIndex.swift in Sources */,
 				546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */,
