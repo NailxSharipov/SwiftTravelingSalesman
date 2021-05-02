@@ -8,14 +8,8 @@
 public struct SurfaceSplitSolution {
 
     private let matrix: AdMatrix
-    private let edgeMatrix: EdgeMatrix
     private let linkMatrix: LinkBitMatrix
     private var minLen: Int = .max
-
-    public static func hordes(matrix: AdMatrix) -> [Edge] {
-        let solution = SurfaceSplitSolution(matrix: matrix)
-        return solution.edgeMatrix.impossibleHordes()
-    }
     
     public struct Info {
         public let dots: [Dot]
@@ -37,7 +31,6 @@ public struct SurfaceSplitSolution {
     private init(matrix: AdMatrix) {
         self.matrix = matrix
         self.linkMatrix = LinkBitMatrix(matrix: matrix)
-        self.edgeMatrix = EdgeMatrix(matrix: matrix)
     }
     
     func info() -> Info {

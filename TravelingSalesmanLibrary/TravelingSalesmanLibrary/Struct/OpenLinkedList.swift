@@ -24,35 +24,15 @@ struct OpenLinkedList {
             lhs.index == rhs.index
         }
     }
-    
-    @inline(__always)
-    var path: [Int] {
-        guard first != -1 else { return [] }
-        var array = [Int]()
-        array.reserveCapacity(nodes.count)
-        var node = nodes[first]
-        while node.next != -1 {
-            array.append(node.index)
-            node = nodes[node.next]
-        }
-        array.append(node.index)
-        
-        return array
-    }
 
     private (set) var count: Int
     private (set) var first: Int
     private (set) var last: Int
-    private var nodes: [Node]
+    private var nodes: UnsafeMutablePointer<Node>
     
-    init(count: Int, isEmpty: Bool) {
-        nodes = [Node](repeating: .empty, count: count)
-        guard !isEmpty else {
-            first = -1
-            last = -1
-            self.count = 0
-            return
-        }
+    init(count: Int) {
+        nodes = UnsafeMutablePointer<Node>.allocate(capacity: count)
+        nodes.initialize(repeating: Node.empty, count: count)
         first = 0
         last = count - 1
 
@@ -66,6 +46,11 @@ struct OpenLinkedList {
         
         nodes[last].next = -1
         self.count = count
+    }
+    
+    func dealocate() {
+        nodes.deinitialize(count: count)
+        nodes.deallocate()
     }
 
     @inline(__always)

@@ -47,15 +47,14 @@ struct FixArray {
     }
     
     init(capacity: Int) {
-        self.buffer = UnsafeMutablePointer<Int>.allocate(capacity: capacity)
-        for i in 0..<capacity {
-            buffer[i] = 0
-        }
-        self.count = 0
+        buffer = UnsafeMutablePointer<Int>.allocate(capacity: capacity)
+        buffer.initialize(repeating: 0, count: capacity)
+        count = 0
     }
 
     func dealocate() {
-        self.buffer.deallocate()
+        buffer.deinitialize(count: count)
+        buffer.deallocate()
     }
 
 }

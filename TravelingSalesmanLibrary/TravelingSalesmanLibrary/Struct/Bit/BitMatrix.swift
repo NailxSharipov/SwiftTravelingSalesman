@@ -49,23 +49,19 @@ struct BitMatrix {
         array = UnsafeMutablePointer<UInt64>.allocate(capacity: size)
         switch fill {
         case .empty:
-            for i in 0..<size {
-                array[i] = 0
-            }
+            array.initialize(repeating: 0, count: size)
         case .full:
             let template: UInt64 = (1 << size) &- 1
-            for i in 0..<size {
-                array[i] = template
-            }
+            array.initialize(repeating: template, count: size)
         case .identity:
+            array.initialize(repeating: 0, count: size)
             for i in 0..<size {
-                array[i] = 0
                 self[i, i] = true
             }
         case .reverseIdentity:
             let template: UInt64 = (1 << size) &- 1
+            array.initialize(repeating: template, count: size)
             for i in 0..<size {
-                array[i] = template
                 self[i, i] = false
             }
         }
@@ -77,7 +73,8 @@ struct BitMatrix {
     }
     
     func deallocate() {
-        self.array.deallocate()
+        array.deinitialize(count: count)
+        array.deallocate()
     }
     
     @inline(__always)

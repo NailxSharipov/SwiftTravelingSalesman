@@ -38,7 +38,7 @@ public struct BruteForceSolution {
         self.path = FixArray(capacity: matrix.size)
         self.best = [Int](repeating: 0, count: matrix.size)
         self.pathBMtx = self.linkMatrix.base
-        self.rest = OpenLinkedList(count: matrix.size, isEmpty: false)
+        self.rest = OpenLinkedList(count: matrix.size)
     }
     
     private mutating func solve() -> [Int] {
@@ -169,6 +169,7 @@ public struct BruteForceSolution {
     private func dealocate() {
         self.linkMatrix.dealocate()
         self.path.dealocate()
+        self.rest.dealocate()
 //        self.pathBMtx.deallocate()
     }
 }
