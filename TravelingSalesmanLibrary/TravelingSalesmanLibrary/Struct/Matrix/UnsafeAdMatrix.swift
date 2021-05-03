@@ -2,26 +2,30 @@
 //  AdMatrix.swift
 //  TravelingSalesmanLibrary
 //
-//  Created by Nail Sharipov on 03.05.2021.
+//  Created by Nail Sharipov on 15.04.2021.
 //
 
 import CoreGraphics
 
-public struct AdMatrix {
+struct UnsafeAdMatrix {
     
     let size: Int
-    let buffer: [Int]
+    private let buffer: UnsafeMutablePointer<Int>
     
     @inline(__always)
     subscript(i: Int, j: Int) -> Int {
         buffer[i &* size &+ j]
     }
+
+    init(matrix: AdMatrix) {
+        size = matrix.size
+        buffer = UnsafeMutablePointer<Int>.allocate(capacity: matrix.buffer.count)
+        buffer.initialize(from: matrix.buffer, count: matrix.buffer.count)
+    }
     
-    public init(array: [Int]) {
-        let n = array.count
-        size = Int(Double(n).squareRoot().rounded())
-        buffer = [Int](repeating: 0, count: n)
-        assert(size * size == n)
+    func dealocate() {
+        buffer.deinitialize(count: size * size)
+        buffer.deallocate()
     }
     
     @inline(__always)
@@ -73,36 +77,4 @@ public struct AdMatrix {
         
         return abcd <= acbd || abcd <= bcda
     }
-}
-
-public extension AdMatrix {
-    
-    static let defaultScale: CGFloat = 10000
-    
-    init(nodes: [CGPoint], scale: CGFloat = Self.defaultScale) {
-        self.size = nodes.count
-        let count = size * size
-        var array = [Int](repeating: 0, count: count)
-        for i in 0..<size - 1 {
-            for j in (i + 1)..<size {
-                let a = nodes[i]
-                let b = nodes[j]
-                let dx = a.x - b.x
-                let dy = a.y - b.y
-                let l = Int((dx * dx + dy * dy).squareRoot() * scale)
-                
-                let k0 = i * size + j
-                let k1 = j * size + i
-                
-                array[k0] = l
-                array[k1] = l
-            }
-        }
-        self.buffer = array
-    }
-    
-    func scale(length: Int, scale: CGFloat = Self.defaultScale) -> CGFloat {
-        CGFloat(length) / scale
-    }
-    
 }

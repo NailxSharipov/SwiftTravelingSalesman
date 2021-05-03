@@ -27,7 +27,7 @@ struct LinkBitMatrix {
         hordes[index(i, j)]
     }
 
-    init(matrix: AdMatrix) {
+    init(matrix: UnsafeAdMatrix) {
         self.size = matrix.size
         
         var origin = BitMatrix(size: size, fill: .reverseIdentity)

@@ -9,7 +9,7 @@ struct PowerIndex {
     
     let array: [Float]
     
-    init(matrix: AdMatrix) {
+    init(matrix: UnsafeAdMatrix) {
         let n = matrix.size
 
         var buffer = [Float](repeating: 0, count: n)

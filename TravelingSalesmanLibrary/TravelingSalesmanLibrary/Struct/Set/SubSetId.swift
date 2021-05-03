@@ -14,7 +14,7 @@ struct SubPath {
 extension Array where Element == Int {
     
     @inline(__always)
-    func subSet(start: Int, end: Int, matrix: AdMatrix) -> (UInt64, SubPath) {
+    func subSet(start: Int, end: Int, matrix: UnsafeAdMatrix) -> (UInt64, SubPath) {
         let zero: UInt64 = 1
 
         var a = self[start]
@@ -37,7 +37,7 @@ extension Array where Element == Int {
 extension FixArray {
     
     @inline(__always)
-    func subSet(start: Int, end: Int, matrix: AdMatrix) -> (UInt64, SubPath) {
+    func subSet(start: Int, end: Int, matrix: UnsafeAdMatrix) -> (UInt64, SubPath) {
         let zero: UInt64 = 1
 
         var a = self[start]

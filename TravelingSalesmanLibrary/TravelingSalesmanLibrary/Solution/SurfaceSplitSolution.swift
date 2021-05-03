@@ -7,7 +7,7 @@
 
 public struct SurfaceSplitSolution {
 
-    private let matrix: AdMatrix
+    private let matrix: UnsafeAdMatrix
     private let linkMatrix: LinkBitMatrix
     private var minLen: Int = .max
     
@@ -29,8 +29,8 @@ public struct SurfaceSplitSolution {
     }
     
     private init(matrix: AdMatrix) {
-        self.matrix = matrix
-        self.linkMatrix = LinkBitMatrix(matrix: matrix)
+        self.matrix = UnsafeAdMatrix(matrix: matrix)
+        self.linkMatrix = LinkBitMatrix(matrix: self.matrix)
     }
     
     func info() -> Info {

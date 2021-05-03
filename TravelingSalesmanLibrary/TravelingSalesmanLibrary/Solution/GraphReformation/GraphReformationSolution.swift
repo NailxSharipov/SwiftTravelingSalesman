@@ -7,7 +7,7 @@
 
 public struct GraphReformationSolution {
 
-    private let matrix: AdMatrix
+    private let matrix: UnsafeAdMatrix
     
     public struct Info {
         public let cities: [City]
@@ -24,7 +24,7 @@ public struct GraphReformationSolution {
     }
     
     private init(matrix: AdMatrix) {
-        self.matrix = matrix
+        self.matrix = UnsafeAdMatrix(matrix: matrix)
     }
     
     func info(removed: [Int]) -> Info {

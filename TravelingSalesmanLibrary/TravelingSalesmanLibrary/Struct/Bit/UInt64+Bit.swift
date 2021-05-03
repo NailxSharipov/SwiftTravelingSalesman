@@ -24,7 +24,7 @@ extension UInt64 {
             if a & 1 == 1 {
                 return i
             }
-            a = a >> 1
+            a >>= 1
         }
         return i
     }
@@ -38,7 +38,7 @@ extension UInt64 {
             if a & 1 == 1 {
                 return i
             }
-            a = a >> 1
+            a >>= 1
         }
         return i
     }

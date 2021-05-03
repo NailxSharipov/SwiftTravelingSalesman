@@ -7,7 +7,7 @@
 
 public struct RoadSolution {
 
-    private let matrix: AdMatrix
+    private let matrix: UnsafeAdMatrix
     
     public struct Info {
         public let cities: [City]
@@ -19,6 +19,7 @@ public struct RoadSolution {
     }
 
     public static func solve(matrix: AdMatrix) -> [Int] {
+        let matrix = UnsafeAdMatrix(matrix: matrix)
         let linkMatrix = LinkBitMatrix(matrix: matrix)
         let baseMovement = linkMatrix.base
         
@@ -47,6 +48,8 @@ public struct RoadSolution {
                 inRoadMap[b] = inRoads
             }
         }
+        
+        matrix.dealocate()
         
         var cities = [City]()
         cities.reserveCapacity(count)

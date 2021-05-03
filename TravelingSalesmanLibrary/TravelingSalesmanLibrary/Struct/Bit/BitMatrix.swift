@@ -81,8 +81,10 @@ struct BitMatrix {
     func union(map: BitMatrix) -> BitMatrix {
         let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
         
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             buffer[i] = array[i] | map.array[i]
+            i &+= 1
         }
         
         return BitMatrix(array: buffer, size: count)
@@ -90,8 +92,10 @@ struct BitMatrix {
     
     @inline(__always)
     mutating func formUnion(map: BitMatrix) {
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             array[i] = array[i] | map.array[i]
+            i &+= 1
         }
     }
     
@@ -100,25 +104,40 @@ struct BitMatrix {
     func intersect(map: BitMatrix) -> BitMatrix {
         let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
         
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             buffer[i] = array[i] & map.array[i]
+            i &+= 1
         }
         
         return BitMatrix(array: buffer, size: count)
     }
     
     @inline(__always)
+    func intersect(map: BitMatrix, result: inout BitMatrix) {
+        var i = 0
+        while i < count {
+            result.array[i] = array[i] & map.array[i]
+            i &+= 1
+        }
+    }
+    
+    @inline(__always)
     mutating func formIntersect(map: BitMatrix) {
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             array[i] = array[i] & map.array[i]
+            i &+= 1
         }
     }
     
     @inline(__always)
     func subtract(map: BitMatrix) -> BitMatrix {
         let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             buffer[i] = array[i].subtract(word: map.array[i])
+            i &+= 1
         }
         
         return BitMatrix(array: buffer, size: count)
@@ -126,16 +145,20 @@ struct BitMatrix {
     
     @inline(__always)
     mutating func formSubtract(map: BitMatrix) {
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             array[i] = array[i].subtract(word: map.array[i])
+            i &+= 1
         }
     }
     
     @inline(__always)
     func invert() -> BitMatrix {
         let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             buffer[i] = ~array[i]
+            i &+= 1
         }
         
         return BitMatrix(array: buffer, size: count)
@@ -193,7 +216,7 @@ struct BitMatrix {
                     j &+= 1
                 }
                 i &+= 1
-                a = a >> 1
+                a >>= 1
             }
             mask = nextMask.subtract(word: visited)
         } while mask != 0
@@ -252,5 +275,11 @@ extension BitMatrix: CustomStringConvertible {
             i += 1
         }
         return result
+    }
+}
+
+extension BitMatrix: CustomDebugStringConvertible {
+    var debugDescription: String {
+        self.description
     }
 }

@@ -22,16 +22,20 @@ struct FixArray {
 
     var toArray: [Int] {
         var result = [Int](repeating: 0, count: count)
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             result[i] = buffer[i]
+            i &+= 1
         }
         return result
     }
     
     @inline(__always)
     func fill(buffer: inout [Int]) {
-        for i in 0..<count {
+        var i = 0
+        while i < count {
             buffer[i] = self.buffer[i]
+            i &+= 1
         }
     }
     
