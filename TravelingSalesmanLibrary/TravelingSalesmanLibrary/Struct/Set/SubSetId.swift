@@ -25,7 +25,7 @@ extension Array where Element == Int {
         for i in start + 1...end {
             let b = self[i]
             mask = mask | (zero << b)
-            len += matrix[a, b]
+            len &+= matrix[a, b]
             a = b
         }
 
@@ -48,7 +48,7 @@ extension FixArray {
         for i in start + 1...end {
             let b = self[i]
             mask = mask | (zero << b)
-            len += matrix[a, b]
+            len &+= matrix[a, b]
             a = b
         }
 
