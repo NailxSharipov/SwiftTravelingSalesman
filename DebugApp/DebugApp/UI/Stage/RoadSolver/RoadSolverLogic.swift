@@ -50,8 +50,8 @@ final class RoadSolverLogic: ObservableObject, Stage {
     
     init(data: [RoadSolverData.Data]) {
         self.data = data
-//        self.pageIndex = 0
-        self.pageIndex = UserDefaults.standard.integer(forKey: key)
+        self.pageIndex = 0
+//        self.pageIndex = UserDefaults.standard.integer(forKey: key)
         
         self.points = self.data[self.pageIndex].points
         (NSApplication.shared.delegate as? AppDelegate)?.title = "RoadSolver (\(pageIndex))"

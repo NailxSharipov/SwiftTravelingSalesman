@@ -37,6 +37,7 @@ public struct SurfaceSplitSolution {
     
     private func dealocate() {
         self.matrix.dealocate()
+        self.linkMatrix.dealocate()
     }
     
     func info() -> Info {
@@ -67,6 +68,7 @@ public struct SurfaceSplitSolution {
         var pathMat = linkMatrix[a, b]!.intersect(map: linkMatrix[b, c]!)
 
         var isEnd = true
+        var tempMat = BitMatrix(size: n, fill: .empty)
         
         repeat {
             isEnd = true
@@ -74,14 +76,14 @@ public struct SurfaceSplitSolution {
             for d in 0..<n {
                 if roads.isBit(index: d) && !visited.isBit(index: d) {
                     if let bdMat = linkMatrix[b, d] {
-                        let mat = pathMat.intersect(map: bdMat)
-                        if mat.isClosed(index: c, a: b, b: d) {
+                        pathMat.intersect(map: bdMat, result: &tempMat)
+                        if tempMat.isClosed(index: c, a: b, b: d) {
                             visited = visited.setBit(index: d)
                             path.append(d)
                             b = c
                             c = d
                             let cdMat = linkMatrix[b, d]!
-                            pathMat = pathMat.intersect(map: cdMat)
+                            pathMat.formIntersect(map: cdMat)
                             isEnd = false
                             break
                         }
@@ -89,6 +91,9 @@ public struct SurfaceSplitSolution {
                 }
             }
         } while !isEnd
+        
+        tempMat.deallocate()
+        pathMat.deallocate()
         
         return path
     }

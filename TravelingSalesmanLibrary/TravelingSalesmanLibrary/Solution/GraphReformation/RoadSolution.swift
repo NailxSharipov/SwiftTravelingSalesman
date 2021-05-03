@@ -47,7 +47,7 @@ public struct RoadSolution {
         
         for a in 0..<count {
             var aRoads = [Road]()
-            for b in 0..<linkMatrix.size {
+            for b in 0..<linkMatrix.size where a != b && !linkMatrix.isHord(a, b) {
                 if let roadBitMatrix = linkMatrix[a, b] {
                     let ab = matrix[a, b]
                     let movement = baseMovement.intersect(map: roadBitMatrix)

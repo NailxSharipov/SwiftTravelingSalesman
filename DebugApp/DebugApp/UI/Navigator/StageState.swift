@@ -16,5 +16,5 @@ final class StageState: ObservableObject {
         case bruteForce
     }
     
-    @Published var current: StageType = .bruteForce
+    @Published var current: StageType = .roadSolution
 }

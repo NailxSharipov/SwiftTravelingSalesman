@@ -98,8 +98,7 @@ struct BitMatrix {
             i &+= 1
         }
     }
-    
-    
+
     @inline(__always)
     func intersect(map: BitMatrix) -> BitMatrix {
         let buffer = UnsafeMutablePointer<UInt64>.allocate(capacity: count)

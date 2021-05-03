@@ -31,8 +31,6 @@ struct LinkBitMatrix {
         self.size = matrix.size
         
         var origin = BitMatrix(size: size, fill: .reverseIdentity)
-        
-//        let template = BitMatrix(size: size, fill: .reverseIdentity)
         var matBuffer = Array<BitMatrix?>(repeating: nil, count: size * size)
         var horBuffer = Array<Bool>(repeating: false, count: size * size)
 
@@ -87,10 +85,8 @@ struct LinkBitMatrix {
     }
     
     func dealocate() {
-        for m in array {
-            if let m = m {
-                m.deallocate()
-            }
+        for item in array {
+            item?.deallocate()
         }
         self.base.deallocate()
     }
