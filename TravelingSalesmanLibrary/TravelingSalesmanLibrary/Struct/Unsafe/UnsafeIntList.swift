@@ -1,12 +1,12 @@
 //
-//  OpenLinkedList.swift
+//  UnsafeIntList.swift
 //  TravelingSalesmanLibrary
 //
 //  Created by Nail Sharipov on 15.04.2021.
 //
 import CoreGraphics
 
-struct OpenLinkedList {
+struct UnsafeIntList {
     
     struct Node: Equatable {
         static let empty = Node(prev: -1, index: -1, next: -1)

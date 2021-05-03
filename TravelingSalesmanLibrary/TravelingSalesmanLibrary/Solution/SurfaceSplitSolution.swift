@@ -25,12 +25,18 @@ public struct SurfaceSplitSolution {
     
     public static func info(matrix: AdMatrix) -> Info {
         let solution = SurfaceSplitSolution(matrix: matrix)
-        return solution.info()
+        let info = solution.info()
+        solution.dealocate()
+        return info
     }
     
     private init(matrix: AdMatrix) {
         self.matrix = UnsafeAdMatrix(matrix: matrix)
         self.linkMatrix = LinkBitMatrix(matrix: self.matrix)
+    }
+    
+    private func dealocate() {
+        self.matrix.dealocate()
     }
     
     func info() -> Info {

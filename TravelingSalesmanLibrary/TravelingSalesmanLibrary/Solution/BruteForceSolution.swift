@@ -8,18 +8,18 @@
 public struct BruteForceSolution {
 
     private let matrix: UnsafeAdMatrix
-    private var minLen: Int = .max
     private let linkMatrix: LinkBitMatrix
+    private let bitMtxBuffer: UnsafeMutablePointer<BitMatrix>
     
+    private var minLen: Int = .max
     private var cache = [UInt64: SubPath]()
     
     private var pathMask: UInt64 = 0
     private var pathBMtx: BitMatrix
-    private let bitMtxBuffer: UnsafeMutablePointer<BitMatrix>
-    private var rest: OpenLinkedList
+    private var rest: UnsafeIntList
     private var best: [Int]
-    private var path: FixArray
-    private var length = 0
+    private var path: UnsafeArray<Int>
+    private var pathLength = 0
     
     private var m0: Int = 0
     private var m1: Int = 0
@@ -34,13 +34,27 @@ public struct BruteForceSolution {
         return result
     }
     
+    private func dealocate() {
+        self.matrix.dealocate()
+        self.linkMatrix.dealocate()
+        self.path.dealocate()
+        self.rest.dealocate()
+        
+        for i in 0..<matrix.size {
+            self.bitMtxBuffer[i].deallocate()
+        }
+        
+        self.bitMtxBuffer.deinitialize(count: matrix.size)
+        self.bitMtxBuffer.deallocate()
+    }
+    
     private init(matrix: AdMatrix) {
         self.matrix = UnsafeAdMatrix(matrix: matrix)
         self.linkMatrix = LinkBitMatrix(matrix: self.matrix)
-        self.path = FixArray(capacity: matrix.size)
+        self.path = UnsafeArray<Int>(capacity: matrix.size)
         self.best = [Int](repeating: 0, count: matrix.size)
         self.pathBMtx = self.linkMatrix.base
-        self.rest = OpenLinkedList(count: matrix.size)
+        self.rest = UnsafeIntList(count: matrix.size)
         self.bitMtxBuffer = UnsafeMutablePointer<BitMatrix>.allocate(capacity: matrix.size)
         for i in 0..<matrix.size {
             self.bitMtxBuffer[i] = BitMatrix(size: matrix.size)
@@ -77,7 +91,7 @@ public struct BruteForceSolution {
         
         guard path.count < n else {
             let last = matrix[c, a]
-            let result = length + last
+            let result = pathLength + last
             if minLen > result {
                 path.fill(buffer: &best)
                 minLen = result
@@ -86,7 +100,7 @@ public struct BruteForceSolution {
             return
         }
 
-        guard minLen > length else {
+        guard minLen > pathLength else {
             return
         }
 
@@ -151,11 +165,11 @@ public struct BruteForceSolution {
             pathMask = pathMask.setBit(index: d)
             let cd = matrix[c, d]
             path.append(d)
-            length += cd
+            pathLength += cd
 
             next()
 
-            length -= cd
+            pathLength -= cd
             path.removeLast()
             rest.add(node: iNode)
             pathMask = pathMask.clearBit(index: d)
@@ -167,18 +181,5 @@ public struct BruteForceSolution {
 
         return
     }
-    
-    private func dealocate() {
-        self.matrix.dealocate()
-        self.linkMatrix.dealocate()
-        self.path.dealocate()
-        self.rest.dealocate()
-        
-        for i in 0..<matrix.size {
-            self.bitMtxBuffer[i].deallocate()
-        }
-        
-        self.bitMtxBuffer.deinitialize(count: matrix.size)
-        self.bitMtxBuffer.deallocate()
-    }
+
 }

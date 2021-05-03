@@ -198,7 +198,9 @@ struct BitMatrix {
     @inline(__always)
     func connectivityFactor(start: Int, visited: UInt64) -> Int {
         let first = self[start].firstBitNotInMask(mask: visited)
-        assert(first != -1)
+        guard first != -1 else {
+            return -1
+        }
 
         var visited = visited.setBit(index: first)
         var mask = self[first].subtract(word: visited)

@@ -8,6 +8,7 @@
 public struct RoadSolution {
 
     private let matrix: UnsafeAdMatrix
+    private let linkMatrix: LinkBitMatrix
     
     public struct Info {
         public let cities: [City]
@@ -17,10 +18,25 @@ public struct RoadSolution {
         public let index: Int
         public let description: String
     }
+    
+    public static func minPath(matrix: AdMatrix) -> [Int] {
+        let solution = RoadSolution(matrix: matrix)
+        let result = solution.solve()
+        solution.dealocate()
+        return result
+    }
+    
+    private init(matrix: AdMatrix) {
+        self.matrix = UnsafeAdMatrix(matrix: matrix)
+        self.linkMatrix = LinkBitMatrix(matrix: self.matrix)
+    }
+    
+    private func dealocate() {
+        self.matrix.dealocate()
+        self.linkMatrix.dealocate()
+    }
 
-    public static func solve(matrix: AdMatrix) -> [Int] {
-        let matrix = UnsafeAdMatrix(matrix: matrix)
-        let linkMatrix = LinkBitMatrix(matrix: matrix)
+    func solve() -> [Int] {
         let baseMovement = linkMatrix.base
         
         let count = linkMatrix.size
@@ -30,7 +46,6 @@ public struct RoadSolution {
         var inRoadMap: [[Road]] = [[Road]](repeating: [], count: count)
         
         for a in 0..<count {
-            
             var aRoads = [Road]()
             for b in 0..<linkMatrix.size {
                 if let roadBitMatrix = linkMatrix[a, b] {
@@ -48,8 +63,6 @@ public struct RoadSolution {
                 inRoadMap[b] = inRoads
             }
         }
-        
-        matrix.dealocate()
         
         var cities = [City]()
         cities.reserveCapacity(count)
@@ -107,7 +120,6 @@ public struct RoadSolution {
             }
         }
 
-//        let lastCity = cities[0]
         var minPath = [Int](repeating: 0, count: count)
         var minLength = Int.max
         
@@ -138,34 +150,6 @@ public struct RoadSolution {
                 }
             }
         }
-        
-//        for road in lastCity.outRoads where road.path.count == count {
-//            if road.length < minLength {
-//                minLength = road.length
-//                minPath = road.path
-//            }
-//        }
-        
-//        for inRoad in lastCity.inRoads {
-//            for outRoad in lastCity.outRoads {
-//                let aMask = inRoad.mask
-//                let bMask = outRoad.mask
-//                let abCount = inRoad.path.count + outRoad.path .count - 2
-//                let abLength = inRoad.length + outRoad.length
-//                if aMask.bitMask & bMask.bitMask == 0 && abCount == count && abLength < minLength {
-//                    minLength = abLength
-//
-//                    for i in 0..<inRoad.path.count {
-//                        minPath[i] = inRoad.path[i]
-//                    }
-//                    var j = inRoad.path.count
-//                    for i in 1..<outRoad.path.count - 1 {
-//                        minPath[j] = outRoad.path[i]
-//                        j &+= 1
-//                    }
-//                }
-//            }
-//        }
 
         return minPath
     }

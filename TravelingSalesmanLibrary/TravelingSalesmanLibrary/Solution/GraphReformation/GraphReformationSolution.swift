@@ -20,11 +20,17 @@ public struct GraphReformationSolution {
     
     public static func info(matrix: AdMatrix, removed: [Int]) -> Info {
         let solution = GraphReformationSolution(matrix: matrix)
-        return solution.info(removed: removed)
+        let info = solution.info(removed: removed)
+        solution.dealocate()
+        return info
     }
     
     private init(matrix: AdMatrix) {
         self.matrix = UnsafeAdMatrix(matrix: matrix)
+    }
+    
+    private func dealocate() {
+        self.matrix.dealocate()
     }
     
     func info(removed: [Int]) -> Info {

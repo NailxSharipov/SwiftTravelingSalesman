@@ -23,8 +23,7 @@ final class RoadSolverLogic: ObservableObject, Stage {
     
     @Published var points: [CGPoint] = []
     var viewModel: ViewModel {
-        let matrix = AdMatrix(nodes: self.points)
-        let edgeIndices = RoadSolution.solve(matrix: matrix)
+        let edgeIndices = RoadSolution.minPath(matrix: AdMatrix(nodes: self.points))
         
         var dots = [DotView.Data]()
         dots.reserveCapacity(points.count)

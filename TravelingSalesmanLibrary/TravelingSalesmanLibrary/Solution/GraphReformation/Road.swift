@@ -62,6 +62,10 @@ public final class Road {
         self.mask = RoadMask(path: path)
     }
     
+    deinit {
+        self.movement.deallocate()
+    }
+    
     convenience init?(inRoad: Road, outRoad: Road) {
         let inMask = inRoad.mask
         let outMask = outRoad.mask
@@ -93,7 +97,10 @@ public final class Road {
         let validFactor = size - n
         let isNotHorde = factor == validFactor
 
-        guard isNotHorde else { return nil }
+        guard isNotHorde else {
+            newBMtx.deallocate()
+            return nil
+        }
 
         self.init(length: length, path: path, movement: newBMtx)
     }
