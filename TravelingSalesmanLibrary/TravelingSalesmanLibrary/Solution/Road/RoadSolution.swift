@@ -37,7 +37,6 @@ public final class RoadSolution {
     }
 
     private func solve() -> [Int] {
-
         var cities = self.createCities()
         self.clearCities(cities: &cities)
 
@@ -138,49 +137,47 @@ public final class RoadSolution {
         var bestRoads = [RoadMask: ReusableRoad]()
         bestRoads.reserveCapacity(count * count)
         
-        var roadBufferA = UnsafeList<ReusableRoad>(capacity: count * count * count)
-        var roadBufferB = UnsafeList<ReusableRoad>(capacity: count * count * count)
+        var markBufferA = UnsafeList<RoadMark>(capacity: count * count)
+        var markBufferB = UnsafeList<RoadMark>(capacity: count * count)
         
         for index in 2..<count {
             let city = cities[index]
 
-            roadBufferA.removeAll()
+            markBufferA.removeAll()
             var j = 0
             while j < city.inRoads.count {
                 let roadId = city.inRoads[j]
                 let road = roadPull[roadId]
                 roadPull.addRemoved(id: roadId)
-                roadBufferA.append(road)
+                markBufferA.append(RoadMark(road: road))
                 j &+= 1
             }
             
-            roadBufferB.removeAll()
+            markBufferB.removeAll()
             j = 0
             while j < city.outRoads.count {
                 let roadId = city.outRoads[j]
                 let road = roadPull[roadId]
                 roadPull.addRemoved(id: roadId)
-                roadBufferB.append(road)
+                markBufferB.append(RoadMark(road: road))
                 j &+= 1
             }
             
             var inIndex = 0
-            while inIndex < roadBufferA.count {
-                let inRoad = roadBufferA[inIndex]
-                let a = inRoad.a
+            while inIndex < markBufferA.count {
+                let inMark = markBufferA[inIndex]
+                let a = inMark.a
                 var outIndex = 0
-                while outIndex < roadBufferB.count {
-                    let outRoad = roadBufferB[outIndex]
-                    let b = outRoad.b
+                while outIndex < markBufferB.count {
+                    let outMark = markBufferB[outIndex]
+                    let b = outMark.b
                     if a != b {
-                        if merge(inRoad: inRoad, outRoad: outRoad) {
+                        if merge(inMark: inMark, outMark: outMark) {
                             if let prevBestRoad = bestRoads[roadPull.tempRoad.mask] {
                                 if prevBestRoad.length > roadPull.tempRoad.length {
                                     let newRoad = roadPull.pushTempRoad()
                                     bestRoads[newRoad.mask] = newRoad
                                     roadPull.release(prevBestRoad.id)
-//                                } else {
-//                                    roadPull.release(newRoad.id)
                                 }
                             } else {
                                 let newRoad = roadPull.pushTempRoad()
@@ -189,7 +186,7 @@ public final class RoadSolution {
                         }
                     }
                     
-                    outIndex &+= 1
+                    outIndex += 1
                 }
                 
                 inIndex &+= 1
@@ -224,30 +221,33 @@ public final class RoadSolution {
                 cities[road.b] = bCity
             }
             
-            if max < bestRoads.count {
-                max = bestRoads.count
-                debugPrint(max)
-            }
-            
             bestRoads.removeAll(keepingCapacity: true)
         }
         
-        roadBufferA.dealocate()
-        roadBufferB.dealocate()
+        markBufferA.dealocate()
+        markBufferB.dealocate()
     }
     
-    
-    private func merge(inRoad: ReusableRoad, outRoad: ReusableRoad) -> Bool {
-        let inMask = inRoad.mask
-        let outMask = outRoad.mask
-        guard inMask.subMask & outMask.subMask == 0, !(inMask.a == outMask.b && inMask.b == outMask.a) else {
+    @inline(__always)
+    private func merge(inMark: RoadMark, outMark: RoadMark) -> Bool {
+        guard inMark.subMask & outMark.subMask == 0, !(inMark.a == outMark.b && inMark.b == outMark.a) else {
             return false
         }
 
-        var newRoad = self.roadPull.tempRoad //self.roadPull.getFree()
+        let a = inMark.a
+        let b = outMark.b
+        
+        var newRoad = self.roadPull.tempRoad
         newRoad.prepare()
         
+        let inRoad = self.roadPull[inMark.id]
+        let outRoad = self.roadPull[outMark.id]
+        
         inRoad.movement.intersect(map: outRoad.movement, result: &newRoad.movement)
+        
+        guard newRoad.movement.isConnected(index: a) else {
+            return false
+        }
 
         let n = inRoad.path.count + outRoad.path.count - 1
         
@@ -257,12 +257,10 @@ public final class RoadSolution {
             newRoad.path.append(outRoad.path[i])
         }
 
-        let a = inMask.a
-        let b = outMask.b
-        let subMask = inMask.subMask | outMask.subMask | (1 << inMask.b)
+        let subMask = inMark.subMask | outMark.subMask | (1 << inMark.b)
         let visited = subMask.setBit(index: a).setBit(index: b)
         
-        let factor = newRoad.movement.connectivityFactor(start: outMask.b, visited: visited)
+        let factor = newRoad.movement.connectivityFactor(start: outMark.b, visited: visited)
         let size = newRoad.movement.count
         let validFactor = size - n
         let isHorde = factor != validFactor
@@ -273,8 +271,6 @@ public final class RoadSolution {
             newRoad.mask = RoadMask(a: a, b: b, subMask: subMask)
             newRoad.length = inRoad.length &+ outRoad.length
             self.roadPull.tempRoad = newRoad
-//            self.roadPull[newRoad.id] = newRoad
-            
             return true
         }
     }

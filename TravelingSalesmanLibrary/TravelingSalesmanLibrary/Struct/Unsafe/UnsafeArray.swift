@@ -8,6 +8,8 @@
 struct UnsafeArray<Element: FixedWidthInteger> {
     
     let buffer: UnsafeMutablePointer<Element>
+    
+    @inline(__always)
     private (set) var count: Int
     
     @inline(__always)

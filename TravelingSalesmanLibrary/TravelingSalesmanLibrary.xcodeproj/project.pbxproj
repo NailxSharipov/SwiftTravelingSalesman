@@ -28,6 +28,7 @@
 		54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */; };
 		54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F494262E9E4A0098635F /* BitMatrix.swift */; };
 		54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F498262EA24A0098635F /* LinkBitMatrix.swift */; };
+		54A5904A264530E700E1040A /* RoadMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A59049264530E700E1040A /* RoadMark.swift */; };
 		54CC41B726384AC1004AD77C /* BruteForceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC41B626384AC1004AD77C /* BruteForceSolution.swift */; };
 		54CC41B926387379004AD77C /* SubSetId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC41B826387379004AD77C /* SubSetId.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Bit.swift"; sourceTree = "<group>"; };
 		54A1F494262E9E4A0098635F /* BitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMatrix.swift; sourceTree = "<group>"; };
 		54A1F498262EA24A0098635F /* LinkBitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBitMatrix.swift; sourceTree = "<group>"; };
+		54A59049264530E700E1040A /* RoadMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadMark.swift; sourceTree = "<group>"; };
 		54CC41B626384AC1004AD77C /* BruteForceSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceSolution.swift; sourceTree = "<group>"; };
 		54CC41B826387379004AD77C /* SubSetId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSetId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +99,7 @@
 				546360E426357DB700282823 /* RoadSolution.swift */,
 				540D42902641BB8200E9078C /* ReusableRoad.swift */,
 				540D42922641C86300E9078C /* ReusableCity.swift */,
+				54A59049264530E700E1040A /* RoadMark.swift */,
 			);
 			path = Road;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			files = (
 				546CAB39262B491B00B86C12 /* Road.swift in Sources */,
 				54368F1526284D8E00F9DAF1 /* UnsafeIntList.swift in Sources */,
+				54A5904A264530E700E1040A /* RoadMark.swift in Sources */,
 				54368F1D26284D8E00F9DAF1 /* UnsafeAdMatrix.swift in Sources */,
 				548D54C2263FC4D9009B2EBE /* AdMatrix.swift in Sources */,
 				54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */,
