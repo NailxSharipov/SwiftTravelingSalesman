@@ -198,7 +198,7 @@ struct BitMatrix {
     func connectivityFactor(start: Int, visited: UInt64) -> Int {
         let first = self[start].firstBitNotInMask(mask: visited)
         guard first != -1 else {
-            return -1
+            return 0
         }
 
         var visited = visited.setBit(index: first)
@@ -238,6 +238,11 @@ struct BitMatrix {
             return true
         }
         return false
+    }
+    
+    @inline(__always)
+    func copyFrom(matrix: BitMatrix) {
+        array.initialize(from: matrix.array, count: count)
     }
     
 }

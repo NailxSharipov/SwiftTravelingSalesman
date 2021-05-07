@@ -7,7 +7,7 @@
 
 struct UnsafeArray<Element: FixedWidthInteger> {
     
-    private let buffer: UnsafeMutablePointer<Element>
+    let buffer: UnsafeMutablePointer<Element>
     private (set) var count: Int
     
     @inline(__always)
@@ -18,6 +18,14 @@ struct UnsafeArray<Element: FixedWidthInteger> {
         set {
             buffer[index] = newValue
         }
+    }
+    
+    var first: Element {
+        buffer[0]
+    }
+    
+    var last: Element {
+        buffer[count - 1]
     }
 
     var toArray: [Element] {
@@ -45,9 +53,21 @@ struct UnsafeArray<Element: FixedWidthInteger> {
         count &+= 1
     }
     
+
+    @inline(__always)
+    mutating func replace(_ value: UnsafeMutablePointer<Element>, count: Int) {
+        buffer.assign(from: value, count: count)
+        self.count = count
+    }
+    
     @inline(__always)
     mutating func removeLast() {
         count &-= 1
+    }
+    
+    @inline(__always)
+    mutating func removeAll() {
+        count = 0
     }
     
     init(capacity: Int) {
@@ -61,4 +81,22 @@ struct UnsafeArray<Element: FixedWidthInteger> {
         buffer.deallocate()
     }
 
+}
+
+extension UnsafeArray: CustomStringConvertible {
+    
+    var description: String {
+        var result = String()
+        result.append("\(buffer[0])")
+        for i in 1..<count {
+            result.append(", \(buffer[i])")
+        }
+        return result
+    }
+}
+
+extension UnsafeArray: CustomDebugStringConvertible {
+    var debugDescription: String {
+        self.description
+    }
 }

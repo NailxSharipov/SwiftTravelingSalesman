@@ -11,6 +11,18 @@ public struct RoadMask: Hashable {
     let b: Int
     let subMask: UInt64
     
+    init() {
+        a = 0
+        b = 0
+        subMask = 0
+    }
+    
+    init(a: Int, b: Int, subMask: UInt64) {
+        self.a = a
+        self.b = b
+        self.subMask = subMask
+    }
+    
     @inline(__always)
     init(path: [Int]) {
         let n = path.count
@@ -27,7 +39,6 @@ public struct RoadMask: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(subMask)
     }
-
 }
 
 public final class Road {

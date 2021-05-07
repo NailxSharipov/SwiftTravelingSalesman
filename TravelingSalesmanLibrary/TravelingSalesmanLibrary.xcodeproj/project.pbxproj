@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540D42912641BB8200E9078C /* ReusableRoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D42902641BB8200E9078C /* ReusableRoad.swift */; };
+		540D42932641C86300E9078C /* ReusableCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D42922641C86300E9078C /* ReusableCity.swift */; };
+		540D42B82644877D00E9078C /* UnsafeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D42B72644877D00E9078C /* UnsafeList.swift */; };
 		54368EED26284B8200F9DAF1 /* TravelingSalesmanLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54368EE326284B8200F9DAF1 /* TravelingSalesmanLibrary.framework */; };
 		54368EF226284B8200F9DAF1 /* TravelingSalesmanLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54368EF126284B8200F9DAF1 /* TravelingSalesmanLibraryTests.swift */; };
 		54368EF426284B8200F9DAF1 /* TravelingSalesmanLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 54368EE626284B8200F9DAF1 /* TravelingSalesmanLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,6 +24,7 @@
 		546CAB39262B491B00B86C12 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546CAB38262B491B00B86C12 /* Road.swift */; };
 		547E9AC1263EE1C000F30582 /* UnsafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E9AC0263EE1C000F30582 /* UnsafeArray.swift */; };
 		548D54C2263FC4D9009B2EBE /* AdMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548D54C1263FC4D9009B2EBE /* AdMatrix.swift */; };
+		548D54C5264044BE009B2EBE /* RoadPull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548D54C4264044BE009B2EBE /* RoadPull.swift */; };
 		54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */; };
 		54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F494262E9E4A0098635F /* BitMatrix.swift */; };
 		54A1F499262EA24A0098635F /* LinkBitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1F498262EA24A0098635F /* LinkBitMatrix.swift */; };
@@ -39,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		540D42902641BB8200E9078C /* ReusableRoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableRoad.swift; sourceTree = "<group>"; };
+		540D42922641C86300E9078C /* ReusableCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCity.swift; sourceTree = "<group>"; };
+		540D42B72644877D00E9078C /* UnsafeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeList.swift; sourceTree = "<group>"; };
 		54368EE326284B8200F9DAF1 /* TravelingSalesmanLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TravelingSalesmanLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54368EE626284B8200F9DAF1 /* TravelingSalesmanLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TravelingSalesmanLibrary.h; sourceTree = "<group>"; };
 		54368EE726284B8200F9DAF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +63,7 @@
 		546CAB38262B491B00B86C12 /* Road.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
 		547E9AC0263EE1C000F30582 /* UnsafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeArray.swift; sourceTree = "<group>"; };
 		548D54C1263FC4D9009B2EBE /* AdMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMatrix.swift; sourceTree = "<group>"; };
+		548D54C4264044BE009B2EBE /* RoadPull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadPull.swift; sourceTree = "<group>"; };
 		54A1F48E262E9E2E0098635F /* UInt64+Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Bit.swift"; sourceTree = "<group>"; };
 		54A1F494262E9E4A0098635F /* BitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMatrix.swift; sourceTree = "<group>"; };
 		54A1F498262EA24A0098635F /* LinkBitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBitMatrix.swift; sourceTree = "<group>"; };
@@ -82,6 +90,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		540D42942641C87000E9078C /* Road */ = {
+			isa = PBXGroup;
+			children = (
+				548D54C4264044BE009B2EBE /* RoadPull.swift */,
+				546360E426357DB700282823 /* RoadSolution.swift */,
+				540D42902641BB8200E9078C /* ReusableRoad.swift */,
+				540D42922641C86300E9078C /* ReusableCity.swift */,
+			);
+			path = Road;
+			sourceTree = "<group>";
+		};
 		54368ED926284B8200F9DAF1 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +142,7 @@
 		54368EFF26284D8E00F9DAF1 /* Solution */ = {
 			isa = PBXGroup;
 			children = (
+				540D42942641C87000E9078C /* Road */,
 				546CAB2D262B3E0800B86C12 /* GraphReformation */,
 				54368F362628556700F9DAF1 /* SurfaceSplitSolution.swift */,
 				54CC41B626384AC1004AD77C /* BruteForceSolution.swift */,
@@ -159,7 +179,6 @@
 				546CAB2E262B3E1800B86C12 /* GraphReformationSolution.swift */,
 				546CAB34262B48F400B86C12 /* City.swift */,
 				546CAB38262B491B00B86C12 /* Road.swift */,
-				546360E426357DB700282823 /* RoadSolution.swift */,
 			);
 			path = GraphReformation;
 			sourceTree = "<group>";
@@ -170,6 +189,7 @@
 				54368F0F26284D8E00F9DAF1 /* UnsafeAdMatrix.swift */,
 				547E9AC0263EE1C000F30582 /* UnsafeArray.swift */,
 				54368F0526284D8E00F9DAF1 /* UnsafeIntList.swift */,
+				540D42B72644877D00E9078C /* UnsafeList.swift */,
 			);
 			path = Unsafe;
 			sourceTree = "<group>";
@@ -299,12 +319,16 @@
 				546CAB35262B48F400B86C12 /* City.swift in Sources */,
 				54A1F48F262E9E2E0098635F /* UInt64+Bit.swift in Sources */,
 				54368F372628556700F9DAF1 /* SurfaceSplitSolution.swift in Sources */,
+				540D42B82644877D00E9078C /* UnsafeList.swift in Sources */,
 				54A1F495262E9E4A0098635F /* BitMatrix.swift in Sources */,
+				540D42932641C86300E9078C /* ReusableCity.swift in Sources */,
 				54CC41B926387379004AD77C /* SubSetId.swift in Sources */,
 				54CC41B726384AC1004AD77C /* BruteForceSolution.swift in Sources */,
+				540D42912641BB8200E9078C /* ReusableRoad.swift in Sources */,
 				547E9AC1263EE1C000F30582 /* UnsafeArray.swift in Sources */,
 				54368F1326284D8E00F9DAF1 /* PowerIndex.swift in Sources */,
 				546CAB2F262B3E1800B86C12 /* GraphReformationSolution.swift in Sources */,
+				548D54C5264044BE009B2EBE /* RoadPull.swift in Sources */,
 				546360E526357DB700282823 /* RoadSolution.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
